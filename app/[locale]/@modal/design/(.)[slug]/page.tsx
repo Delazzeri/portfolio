@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { AccentScope } from '@/components/AccentScope';
 import { Modal } from '@/components/Modal';
 import { ProjectDetail } from '@/components/ProjectDetail';
-import { getDummyProjectBySlug } from '@/lib/dummy-projects';
+import { getProjectBySlug } from '@/lib/data/projects';
 
 export default async function DesignProjectModal({
   params,
@@ -10,8 +10,8 @@ export default async function DesignProjectModal({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getDummyProjectBySlug(slug);
-  if (!project || project.type !== 'design') notFound();
+  const project = await getProjectBySlug(slug, 'design');
+  if (!project) notFound();
 
   return (
     <AccentScope section="design">

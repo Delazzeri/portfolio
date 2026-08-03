@@ -1,11 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import { AccentScope } from '@/components/AccentScope';
 import { ProjectGrid } from '@/components/ProjectGrid';
-import { getDummyProjectsByType } from '@/lib/dummy-projects';
+import { getProjectsByType } from '@/lib/data/projects';
 
 export default async function CodePage() {
   const t = await getTranslations('Nav');
-  const projects = getDummyProjectsByType('code');
+  const projects = await getProjectsByType('code');
 
   return (
     <AccentScope section="code">
