@@ -1,0 +1,27 @@
+{
+  "Metadata": {
+    "title": "Eduardo — Design & Código",
+    "description": "Portfólio de projetos de design e programação."
+  },
+  "Nav": {
+    "design": "Design",
+    "code": "Código",
+    "all": "Tudo",
+    "admin": "Admin"
+  },
+  "Common": {
+    "themeToggle": "Alternar tema",
+    "languageToggle": "Alternar idioma",
+    "close": "Fechar",
+    "viewProject": "Ver projeto",
+    "emptyState": "Nenhum projeto por aqui ainda."
+  },
+  "Links": {
+    "github": "GitHub",
+    "vercel": "Vercel",
+    "live_site": "Site ao vivo",
+    "instagram": "Instagram",
+    "ebook": "E-book",
+    "other": "Link"
+  }
+}
