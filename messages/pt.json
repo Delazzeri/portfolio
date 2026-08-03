@@ -23,5 +23,18 @@
     "instagram": "Instagram",
     "ebook": "E-book",
     "other": "Link"
+  },
+  "Admin": {
+    "loginTitle": "Entrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "submitting": "Entrando…",
+    "genericError": "Não foi possível entrar. Confira e-mail e senha.",
+    "dashboardTitle": "Projetos",
+    "signOut": "Sair",
+    "published": "Publicado",
+    "draft": "Rascunho",
+    "newProject": "Novo projeto"
   }
 }

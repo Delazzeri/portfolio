@@ -15,7 +15,7 @@ const sections = [
 export function NavBar() {
   const t = useTranslations('Nav');
   const pathname = usePathname();
-  const activeSection = sections.find((s) => pathname.startsWith(s.href))?.key ?? 'all';
+  const activeSection = sections.find((s) => pathname.startsWith(s.href))?.key;
 
   return (
     <header className="fixed inset-x-0 top-3 z-50 flex justify-center px-3 sm:top-5 sm:px-4">

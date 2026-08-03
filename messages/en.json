@@ -23,5 +23,18 @@
     "instagram": "Instagram",
     "ebook": "Ebook",
     "other": "Link"
+  },
+  "Admin": {
+    "loginTitle": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "genericError": "Couldn't sign in. Check your email and password.",
+    "dashboardTitle": "Projects",
+    "signOut": "Sign out",
+    "published": "Published",
+    "draft": "Draft",
+    "newProject": "New project"
   }
 }
