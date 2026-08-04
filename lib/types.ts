@@ -34,9 +34,23 @@ export type Project = {
   bannerImageUrl: string;
   position: number;
   published: boolean;
-  featured: boolean;
-  featuredPosition: number | null;
   images: ProjectImage[];
   links: ProjectLink[];
   tags: Tag[];
+};
+
+export type HeroMediaType = 'image' | 'video';
+
+export type HeroSlide = {
+  id: string;
+  mediaType: HeroMediaType;
+  mediaUrl: string;
+  titlePt: string;
+  titleEn: string;
+  descriptionPt: string;
+  descriptionEn: string;
+  projectSlug: string | null;
+  projectType: ProjectType | null;
+  published: boolean;
+  position: number;
 };

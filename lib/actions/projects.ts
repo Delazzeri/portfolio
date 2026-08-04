@@ -25,19 +25,7 @@ function parseFields(formData: FormData) {
     slug: formData.get('slug'),
     type: formData.get('type'),
     published: formData.get('published') === 'on',
-    featured: formData.get('featured') === 'on',
   });
-}
-
-async function nextFeaturedPosition(supabase: SupabaseServerClient): Promise<number> {
-  const { data } = await supabase
-    .from('projects')
-    .select('featured_position')
-    .eq('featured', true)
-    .order('featured_position', { ascending: false })
-    .limit(1)
-    .maybeSingle();
-  return (data?.featured_position ?? -1) + 1;
 }
 
 async function uploadImage(
@@ -130,8 +118,6 @@ export async function createProject(
       slug: fields.slug,
       type: fields.type,
       published: fields.published,
-      featured: fields.featured,
-      featured_position: fields.featured ? await nextFeaturedPosition(supabase) : null,
     })
     .select('id')
     .single();
@@ -184,18 +170,6 @@ export async function updateProject(
     return { error: 'Confira os campos obrigatórios e o formato do slug.' };
   }
 
-  const { data: existing } = await supabase
-    .from('projects')
-    .select('featured, featured_position')
-    .eq('id', id)
-    .single();
-
-  const featuredPosition = !fields.featured
-    ? null
-    : existing?.featured
-      ? existing.featured_position
-      : await nextFeaturedPosition(supabase);
-
   const { error: updateError } = await supabase
     .from('projects')
     .update({
@@ -206,8 +180,6 @@ export async function updateProject(
       slug: fields.slug,
       type: fields.type,
       published: fields.published,
-      featured: fields.featured,
-      featured_position: featuredPosition,
     })
     .eq('id', id);
 

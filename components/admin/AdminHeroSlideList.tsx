@@ -20,27 +20,27 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import { useRouter } from '@/i18n/navigation';
 import { Link } from '@/i18n/navigation';
-import { reorderProjects } from '@/lib/actions/projects';
+import { reorderHeroSlides } from '@/lib/actions/hero-slides';
 import { pickLocale } from '@/lib/localized-field';
-import { DeleteProjectButton } from '@/components/admin/DeleteProjectButton';
+import { DeleteHeroSlideButton } from '@/components/admin/DeleteHeroSlideButton';
 import type { AppLocale } from '@/i18n/routing';
-import type { Project } from '@/lib/types';
+import type { HeroSlide } from '@/lib/types';
 
-type AdminProjectListLabels = {
+type AdminHeroSlideListLabels = {
   published: string;
   draft: string;
 };
 
-export function AdminProjectList({
+export function AdminHeroSlideList({
   locale,
-  projects: initialProjects,
+  slides: initialSlides,
   labels,
 }: {
   locale: AppLocale;
-  projects: Project[];
-  labels: AdminProjectListLabels;
+  slides: HeroSlide[];
+  labels: AdminHeroSlideListLabels;
 }) {
-  const [projects, setProjects] = useState(initialProjects);
+  const [slides, setSlides] = useState(initialSlides);
   const router = useRouter();
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
@@ -51,25 +51,25 @@ export function AdminProjectList({
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    const oldIndex = projects.findIndex((p) => p.id === active.id);
-    const newIndex = projects.findIndex((p) => p.id === over.id);
-    const reordered = arrayMove(projects, oldIndex, newIndex);
-    setProjects(reordered);
+    const oldIndex = slides.findIndex((s) => s.id === active.id);
+    const newIndex = slides.findIndex((s) => s.id === over.id);
+    const reordered = arrayMove(slides, oldIndex, newIndex);
+    setSlides(reordered);
 
     try {
-      await reorderProjects(reordered.map((p) => Number(p.id)));
+      await reorderHeroSlides(reordered.map((s) => Number(s.id)));
     } catch {
-      setProjects(initialProjects);
+      setSlides(initialSlides);
       router.refresh();
     }
   }
 
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext items={projects.map((p) => p.id)} strategy={verticalListSortingStrategy}>
+      <SortableContext items={slides.map((s) => s.id)} strategy={verticalListSortingStrategy}>
         <ul className="flex flex-col gap-2">
-          {projects.map((project) => (
-            <SortableRow key={project.id} project={project} locale={locale} labels={labels} />
+          {slides.map((slide) => (
+            <SortableRow key={slide.id} slide={slide} locale={locale} labels={labels} />
           ))}
         </ul>
       </SortableContext>
@@ -78,16 +78,16 @@ export function AdminProjectList({
 }
 
 function SortableRow({
-  project,
+  slide,
   locale,
   labels,
 }: {
-  project: Project;
+  slide: HeroSlide;
   locale: AppLocale;
-  labels: AdminProjectListLabels;
+  labels: AdminHeroSlideListLabels;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: project.id,
+    id: slide.id,
   });
 
   const style = {
@@ -111,19 +111,20 @@ function SortableRow({
       >
         ⠿
       </button>
-      <Link href={`/admin/projects/${project.id}/edit`} className="min-w-0 flex-1">
+      <Link href={`/admin/hero/${slide.id}/edit`} className="min-w-0 flex-1">
         <p className="truncate font-medium text-foreground">
-          {pickLocale(project.titlePt, project.titleEn, locale)}
+          {pickLocale(slide.titlePt, slide.titleEn, locale)}
         </p>
         <p className="truncate text-xs text-foreground/50">
-          {project.type} · /{project.slug}
+          {slide.mediaType === 'video' ? 'Vídeo' : 'Imagem'}
+          {slide.projectSlug ? ` · vinculado a /${slide.projectSlug}` : ''}
         </p>
       </Link>
       <div className="flex items-center gap-4">
         <span className="text-xs font-medium text-foreground/60">
-          {project.published ? labels.published : labels.draft}
+          {slide.published ? labels.published : labels.draft}
         </span>
-        <DeleteProjectButton id={Number(project.id)} locale={locale} />
+        <DeleteHeroSlideButton id={Number(slide.id)} locale={locale} />
       </div>
     </li>
   );

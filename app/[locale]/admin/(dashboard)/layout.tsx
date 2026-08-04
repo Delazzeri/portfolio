@@ -3,6 +3,7 @@ import { redirect } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { signOut } from '@/lib/actions/auth';
 import { pageContainer } from '@/lib/page-container';
+import { AdminSectionNav } from '@/components/admin/AdminSectionNav';
 import type { AppLocale } from '@/i18n/routing';
 
 export default async function AdminDashboardLayout({
@@ -40,6 +41,7 @@ export default async function AdminDashboardLayout({
           </button>
         </form>
       </div>
+      <AdminSectionNav />
       {children}
     </div>
   );

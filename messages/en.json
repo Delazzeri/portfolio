@@ -41,6 +41,9 @@
     "signOut": "Sign out",
     "published": "Published",
     "draft": "Draft",
-    "newProject": "New project"
+    "newProject": "New project",
+    "newHeroSlide": "New slide",
+    "navProjects": "Projects",
+    "navHero": "Hero"
   }
 }
