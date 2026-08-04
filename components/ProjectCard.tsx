@@ -8,6 +8,7 @@ import type { AppLocale } from '@/i18n/routing';
 import type { Project } from '@/lib/types';
 import { pickLocale } from '@/lib/localized-field';
 import { useHoverCapable } from '@/hooks/useHoverCapable';
+import { glassCard } from '@/lib/glass-card';
 
 export function ProjectCard({ project }: { project: Project }) {
   const locale = useLocale() as AppLocale;
@@ -21,7 +22,7 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <motion.div
         layoutId={`project-cover-${project.id}`}
-        className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-hairline bg-surface-solid"
+        className={glassCard('relative aspect-[4/3]')}
         whileHover={hoverCapable ? { scale: 1.035, y: -4 } : undefined}
         transition={{ type: 'spring', stiffness: 300, damping: 26 }}
         style={{ boxShadow: '0 1px 2px var(--shadow-color)' }}

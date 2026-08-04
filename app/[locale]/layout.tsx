@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { NavBar } from '@/components/NavBar';
+import { SITE_URL } from '@/lib/site';
 import '../globals.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
@@ -23,7 +24,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
-  return { title: t('title'), description: t('description') };
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: t('title'),
+    description: t('description'),
+  };
 }
 
 export default async function LocaleLayout({

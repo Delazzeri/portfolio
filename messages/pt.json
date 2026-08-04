@@ -24,6 +24,11 @@
     "ebook": "E-book",
     "other": "Link"
   },
+  "Error": {
+    "title": "Algo deu errado",
+    "description": "Não foi possível carregar esta página.",
+    "retry": "Tentar novamente"
+  },
   "Admin": {
     "loginTitle": "Entrar",
     "email": "E-mail",

@@ -5,6 +5,7 @@ import { AccentScope } from '@/components/AccentScope';
 import { ProjectDetail } from '@/components/ProjectDetail';
 import { getProjectBySlug } from '@/lib/data/projects';
 import { pickLocale } from '@/lib/localized-field';
+import { glassCard } from '@/lib/glass-card';
 import type { AppLocale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -30,7 +31,7 @@ export default async function CodeProjectPage({ params }: { params: Promise<{ sl
 
   return (
     <AccentScope section="code">
-      <div className="-mt-24 overflow-hidden rounded-[28px] border border-hairline bg-surface-solid sm:-mt-28">
+      <div className={glassCard('-mt-24 sm:-mt-28')}>
         <ProjectDetail project={project} />
       </div>
     </AccentScope>

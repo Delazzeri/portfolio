@@ -24,6 +24,11 @@
     "ebook": "Ebook",
     "other": "Link"
   },
+  "Error": {
+    "title": "Something went wrong",
+    "description": "This page couldn't be loaded.",
+    "retry": "Try again"
+  },
   "Admin": {
     "loginTitle": "Sign in",
     "email": "Email",
