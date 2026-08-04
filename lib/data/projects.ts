@@ -94,3 +94,14 @@ export const getProjectBySlug = cache(async function getProjectBySlug(
   if (error) throw error;
   return data ? mapProjectRow(data as unknown as ProjectRow) : null;
 });
+
+export async function getProjectById(id: number): Promise<Project | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('projects')
+    .select(PROJECT_SELECT)
+    .eq('id', id)
+    .maybeSingle();
+  if (error) throw error;
+  return data ? mapProjectRow(data as unknown as ProjectRow) : null;
+}
