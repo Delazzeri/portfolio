@@ -6,6 +6,7 @@ Site de portfólio pessoal (design + código), bilíngue PT/EN. Ver [CLAUDE.md](
 
 ```bash
 npm install
+cp .env.example .env.local # preencher com as credenciais do projeto Supabase
 npm run dev
 ```
 
