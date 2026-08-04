@@ -17,7 +17,7 @@ export function LanguageToggle() {
       aria-label={t('languageToggle')}
       className="flex h-9 w-9 items-center justify-center rounded-full text-[13px] font-medium uppercase text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
     >
-      {nextLocale}
+      {locale}
     </Link>
   );
 }
