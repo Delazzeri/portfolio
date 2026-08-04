@@ -1,8 +1,7 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getProjectsByType } from '@/lib/data/projects';
-import { pickLocale } from '@/lib/localized-field';
-import { DeleteProjectButton } from '@/components/admin/DeleteProjectButton';
+import { AdminProjectList } from '@/components/admin/AdminProjectList';
 import type { AppLocale } from '@/i18n/routing';
 
 export default async function AdminDashboardPage() {
@@ -19,29 +18,11 @@ export default async function AdminDashboardPage() {
         {t('newProject')}
       </Link>
 
-      <ul className="flex flex-col gap-2">
-        {projects.map((project) => (
-          <li
-            key={project.id}
-            className="flex items-center justify-between rounded-2xl border border-hairline bg-surface px-4 py-3"
-          >
-            <Link href={`/admin/projects/${project.id}/edit`} className="min-w-0 flex-1">
-              <p className="truncate font-medium text-foreground">
-                {pickLocale(project.titlePt, project.titleEn, locale)}
-              </p>
-              <p className="truncate text-xs text-foreground/50">
-                {project.type} · /{project.slug}
-              </p>
-            </Link>
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-medium text-foreground/60">
-                {project.published ? t('published') : t('draft')}
-              </span>
-              <DeleteProjectButton id={Number(project.id)} locale={locale} />
-            </div>
-          </li>
-        ))}
-      </ul>
+      <AdminProjectList
+        locale={locale}
+        projects={projects}
+        labels={{ published: t('published'), draft: t('draft') }}
+      />
     </div>
   );
 }

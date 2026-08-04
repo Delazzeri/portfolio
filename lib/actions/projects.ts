@@ -232,3 +232,16 @@ export async function deleteProject(id: number, locale: AppLocale) {
   revalidatePath('/[locale]/admin', 'page');
   return redirect({ href: '/admin', locale });
 }
+
+export async function reorderProjects(orderedIds: number[]) {
+  const supabase = await createClient();
+  await Promise.all(
+    orderedIds.map((id, index) =>
+      supabase.from('projects').update({ position: index }).eq('id', id),
+    ),
+  );
+  revalidatePath('/[locale]/admin', 'page');
+  revalidatePath('/[locale]/design', 'page');
+  revalidatePath('/[locale]/code', 'page');
+  revalidatePath('/[locale]/all', 'page');
+}
