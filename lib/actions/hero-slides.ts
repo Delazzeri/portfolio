@@ -26,10 +26,10 @@ function parseFields(formData: FormData) {
 
 async function uploadHeroMedia(
   supabase: SupabaseServerClient,
-  slideId: number,
+  pathPrefix: string,
   file: File,
 ): Promise<string> {
-  const path = `hero/${slideId}/${Date.now()}-${file.name}`;
+  const path = `hero/${pathPrefix}/${Date.now()}-${file.name}`;
   const { error } = await supabase.storage
     .from('project-media')
     .upload(path, file, { upsert: true });
@@ -66,26 +66,25 @@ export async function createHeroSlide(
     return { error: 'Escolha uma imagem ou vídeo para o slide.' };
   }
 
-  const { data: inserted, error: insertError } = await supabase
-    .from('hero_slides')
-    .insert({
-      media_type: fields.mediaType,
-      media_url: '',
-      title_pt: fields.titlePt,
-      title_en: fields.titleEn,
-      description_pt: fields.descriptionPt,
-      description_en: fields.descriptionEn,
-      project_id: fields.projectId,
-      published: fields.published,
-    })
-    .select('id')
-    .single();
+  let mediaUrl: string;
+  try {
+    mediaUrl = await uploadHeroMedia(supabase, 'new', media);
+  } catch {
+    return { error: 'Falha ao enviar o arquivo. Tente um arquivo menor ou verifique sua conexão.' };
+  }
+
+  const { error: insertError } = await supabase.from('hero_slides').insert({
+    media_type: fields.mediaType,
+    media_url: mediaUrl,
+    title_pt: fields.titlePt,
+    title_en: fields.titleEn,
+    description_pt: fields.descriptionPt,
+    description_en: fields.descriptionEn,
+    project_id: fields.projectId,
+    published: fields.published,
+  });
 
   if (insertError) return { error: insertError.message };
-  const slideId = inserted.id as number;
-
-  const mediaUrl = await uploadHeroMedia(supabase, slideId, media);
-  await supabase.from('hero_slides').update({ media_url: mediaUrl }).eq('id', slideId);
 
   revalidateAll();
   return redirect({ href: '/admin/hero', locale });
@@ -107,7 +106,14 @@ export async function updateHeroSlide(
   }
 
   const media = formData.get('media') as File | null;
-  const mediaUrl = media && media.size > 0 ? await uploadHeroMedia(supabase, id, media) : undefined;
+  let mediaUrl: string | undefined;
+  if (media && media.size > 0) {
+    try {
+      mediaUrl = await uploadHeroMedia(supabase, String(id), media);
+    } catch {
+      return { error: 'Falha ao enviar o arquivo. Tente um arquivo menor ou verifique sua conexão.' };
+    }
+  }
 
   const { error: updateError } = await supabase
     .from('hero_slides')
