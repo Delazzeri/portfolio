@@ -10,6 +10,7 @@ export const projectFieldsSchema = z.object({
     .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Use apenas letras minúsculas, números e hífens'),
   type: z.enum(['design', 'code']),
   published: z.boolean(),
+  featured: z.boolean(),
 });
 
 export type ProjectFields = z.infer<typeof projectFieldsSchema>;

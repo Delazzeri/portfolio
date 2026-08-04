@@ -56,7 +56,7 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <NavBar />
-            <main className="mx-auto max-w-6xl px-4 pb-24 pt-24 sm:px-6 sm:pt-28">{children}</main>
+            <main className="pb-24 pt-24 sm:pt-28">{children}</main>
             {modal}
           </NextIntlClientProvider>
         </ThemeProvider>

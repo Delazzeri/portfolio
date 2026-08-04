@@ -34,6 +34,8 @@ export type Project = {
   bannerImageUrl: string;
   position: number;
   published: boolean;
+  featured: boolean;
+  featuredPosition: number | null;
   images: ProjectImage[];
   links: ProjectLink[];
   tags: Tag[];

@@ -7,7 +7,8 @@
     "design": "Design",
     "code": "Code",
     "all": "All",
-    "admin": "Admin"
+    "admin": "Admin",
+    "menuLabel": "Sections"
   },
   "Common": {
     "themeToggle": "Toggle theme",

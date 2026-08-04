@@ -120,6 +120,7 @@ function SortableRow({
         </p>
       </Link>
       <div className="flex items-center gap-4">
+        {project.featured && <span aria-hidden className="text-sm text-accent">★</span>}
         <span className="text-xs font-medium text-foreground/60">
           {project.published ? labels.published : labels.draft}
         </span>

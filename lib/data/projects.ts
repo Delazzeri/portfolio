@@ -4,7 +4,7 @@ import type { Project, ProjectType } from '@/lib/types';
 
 const PROJECT_SELECT = `
   id, slug, type, title_pt, title_en, description_pt, description_en,
-  cover_image_url, banner_image_url, position, published,
+  cover_image_url, banner_image_url, position, published, featured, featured_position,
   project_images ( id, image_url, position ),
   project_links ( id, label, url, type, position ),
   project_tags ( tags ( id, slug, name_pt, name_en ) )
@@ -22,6 +22,8 @@ type ProjectRow = {
   banner_image_url: string | null;
   position: number;
   published: boolean;
+  featured: boolean;
+  featured_position: number | null;
   project_images: { id: number; image_url: string; position: number }[];
   project_links: { id: number; label: string; url: string; type: string; position: number }[];
   project_tags: { tags: { id: number; slug: string; name_pt: string; name_en: string } | null }[];
@@ -40,6 +42,8 @@ function mapProjectRow(row: ProjectRow): Project {
     bannerImageUrl: row.banner_image_url ?? '',
     position: row.position,
     published: row.published,
+    featured: row.featured,
+    featuredPosition: row.featured_position,
     images: row.project_images
       .slice()
       .sort((a, b) => a.position - b.position)
@@ -75,6 +79,21 @@ export async function getProjectsByType(type: ProjectType | null): Promise<Proje
     .from('projects')
     .select(PROJECT_SELECT)
     .order('position', { ascending: true });
+  if (type) query = query.eq('type', type);
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data as unknown as ProjectRow[]).map(mapProjectRow);
+}
+
+export async function getFeaturedProjects(type: ProjectType | null): Promise<Project[]> {
+  const supabase = await createClient();
+  let query = supabase
+    .from('projects')
+    .select(PROJECT_SELECT)
+    .eq('featured', true)
+    .eq('published', true)
+    .order('featured_position', { ascending: true });
   if (type) query = query.eq('type', type);
 
   const { data, error } = await query;

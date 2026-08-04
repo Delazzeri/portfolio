@@ -105,6 +105,16 @@ export function ProjectForm({
         </label>
       </div>
 
+      <label className="flex items-center gap-2 text-sm">
+        <input
+          type="checkbox"
+          name="featured"
+          defaultChecked={project?.featured ?? false}
+          className="h-4 w-4"
+        />
+        Destaque (aparece no carrossel do topo)
+      </label>
+
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <ImageField name="cover" label="Capa" existingUrl={project?.coverImageUrl} />
         <ImageField name="banner" label="Banner" existingUrl={project?.bannerImageUrl} />

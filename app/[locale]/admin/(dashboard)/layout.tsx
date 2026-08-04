@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { redirect } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { signOut } from '@/lib/actions/auth';
+import { pageContainer } from '@/lib/page-container';
 import type { AppLocale } from '@/i18n/routing';
 
 export default async function AdminDashboardLayout({
@@ -25,7 +26,7 @@ export default async function AdminDashboardLayout({
   const t = await getTranslations('Admin');
 
   return (
-    <div>
+    <div className={pageContainer()}>
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           {t('dashboardTitle')}

@@ -6,6 +6,7 @@ import { ProjectDetail } from '@/components/ProjectDetail';
 import { getProjectBySlug } from '@/lib/data/projects';
 import { pickLocale } from '@/lib/localized-field';
 import { glassCard } from '@/lib/glass-card';
+import { pageContainer } from '@/lib/page-container';
 import type { AppLocale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -31,8 +32,10 @@ export default async function DesignProjectPage({ params }: { params: Promise<{ 
 
   return (
     <AccentScope section="design">
-      <div className={glassCard('-mt-24 sm:-mt-28')}>
-        <ProjectDetail project={project} />
+      <div className={pageContainer()}>
+        <div className={glassCard('-mt-24 sm:-mt-28')}>
+          <ProjectDetail project={project} />
+        </div>
       </div>
     </AccentScope>
   );
