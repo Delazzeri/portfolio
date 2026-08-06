@@ -25,6 +25,7 @@ export const linksArraySchema = z.array(linkSchema);
 export const newTagSchema = z.object({
   namePt: z.string().min(1),
   nameEn: z.string().min(1),
+  category: z.enum(['topic', 'tool']),
 });
 
 export const newTagsArraySchema = z.array(newTagSchema);

@@ -5,7 +5,7 @@ export async function getAllTags(): Promise<Tag[]> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from('tags')
-    .select('id, slug, name_pt, name_en')
+    .select('id, slug, name_pt, name_en, category')
     .order('name_pt');
   if (error) throw error;
 
@@ -14,5 +14,6 @@ export async function getAllTags(): Promise<Tag[]> {
     slug: tag.slug,
     namePt: tag.name_pt,
     nameEn: tag.name_en,
+    category: tag.category,
   }));
 }

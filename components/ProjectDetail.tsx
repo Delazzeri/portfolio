@@ -1,36 +1,29 @@
-import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
 import type { AppLocale } from '@/i18n/routing';
 import type { Project } from '@/lib/types';
 import { pickLocale } from '@/lib/localized-field';
+import { ProjectBanner, ProjectGallery } from './ProjectGallery';
 
 export async function ProjectDetail({ project }: { project: Project }) {
   const locale = (await getLocale()) as AppLocale;
   const t = await getTranslations('Links');
   const title = pickLocale(project.titlePt, project.titleEn, locale);
   const description = pickLocale(project.descriptionPt, project.descriptionEn, locale);
+  const topicTags = project.tags.filter((tag) => tag.category === 'topic');
+  const toolTags = project.tags.filter((tag) => tag.category === 'tool');
 
   return (
     <article>
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-t-[28px] bg-surface-solid">
-        <Image
-          src={project.bannerImageUrl}
-          alt={title}
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover"
-        />
-      </div>
+      <ProjectBanner url={project.bannerImageUrl} alt={title} />
 
       <div className="space-y-6 px-6 py-8 sm:px-10">
         <div>
           <h1 className="text-[28px] font-semibold tracking-tight text-foreground sm:text-[34px]">
             {title}
           </h1>
-          {project.tags.length > 0 && (
+          {topicTags.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
+              {topicTags.map((tag) => (
                 <span
                   key={tag.id}
                   className="rounded-full border border-hairline px-2.5 py-1 font-mono text-[11px] uppercase tracking-wide text-foreground/60"
@@ -60,18 +53,20 @@ export async function ProjectDetail({ project }: { project: Project }) {
           </div>
         )}
 
-        {project.images.length > 0 && (
-          <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2">
-            {project.images.map((image) => (
-              <div
-                key={image.id}
-                className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-hairline"
+        {toolTags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {toolTags.map((tag) => (
+              <span
+                key={tag.id}
+                className="rounded-full bg-surface-solid px-2.5 py-1 text-[12px] text-foreground/60"
               >
-                <Image src={image.imageUrl} alt="" fill sizes="50vw" className="object-cover" />
-              </div>
+                {pickLocale(tag.namePt, tag.nameEn, locale)}
+              </span>
             ))}
           </div>
         )}
+
+        <ProjectGallery images={project.images} alt={title} />
       </div>
     </article>
   );

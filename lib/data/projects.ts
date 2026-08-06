@@ -7,7 +7,7 @@ const PROJECT_SELECT = `
   cover_image_url, banner_image_url, position, published,
   project_images ( id, image_url, position ),
   project_links ( id, label, url, type, position ),
-  project_tags ( tags ( id, slug, name_pt, name_en ) )
+  project_tags ( tags ( id, slug, name_pt, name_en, category ) )
 `;
 
 type ProjectRow = {
@@ -24,7 +24,15 @@ type ProjectRow = {
   published: boolean;
   project_images: { id: number; image_url: string; position: number }[];
   project_links: { id: number; label: string; url: string; type: string; position: number }[];
-  project_tags: { tags: { id: number; slug: string; name_pt: string; name_en: string } | null }[];
+  project_tags: {
+    tags: {
+      id: number;
+      slug: string;
+      name_pt: string;
+      name_en: string;
+      category: 'topic' | 'tool';
+    } | null;
+  }[];
 };
 
 function mapProjectRow(row: ProjectRow): Project {
@@ -65,6 +73,7 @@ function mapProjectRow(row: ProjectRow): Project {
         slug: tag.slug,
         namePt: tag.name_pt,
         nameEn: tag.name_en,
+        category: tag.category,
       })),
   };
 }

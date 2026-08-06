@@ -71,7 +71,12 @@ async function syncTagsAndLinks(
   for (const tag of newTags) {
     const { data, error } = await supabase
       .from('tags')
-      .insert({ slug: slugify(tag.nameEn || tag.namePt), name_pt: tag.namePt, name_en: tag.nameEn })
+      .insert({
+        slug: slugify(tag.nameEn || tag.namePt),
+        name_pt: tag.namePt,
+        name_en: tag.nameEn,
+        category: tag.category,
+      })
       .select('id')
       .single();
     if (error) throw error;

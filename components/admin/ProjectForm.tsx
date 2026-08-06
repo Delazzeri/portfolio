@@ -125,13 +125,8 @@ export function ProjectForm({
         />
       </div>
 
-      <div>
-        <p className="mb-2 text-sm font-medium text-foreground/80">Tags</p>
-        <TagsEditor
-          allTags={allTags}
-          initialSelectedIds={project?.tags.map((tag) => tag.id) ?? []}
-        />
-      </div>
+      <TagsEditor allTags={allTags} initialSelectedIds={project?.tags.map((tag) => tag.id) ?? []} />
+
 
       {state.error && <p className="text-sm text-red-500">{state.error}</p>}
 

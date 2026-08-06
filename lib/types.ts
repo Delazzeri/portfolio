@@ -15,11 +15,14 @@ export type ProjectImage = {
   position: number;
 };
 
+export type TagCategory = 'topic' | 'tool';
+
 export type Tag = {
   id: string;
   namePt: string;
   nameEn: string;
   slug: string;
+  category: TagCategory;
 };
 
 export type Project = {
