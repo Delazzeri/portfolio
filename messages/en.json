@@ -43,7 +43,9 @@
     "draft": "Draft",
     "newProject": "New project",
     "newHeroSlide": "New slide",
+    "newToolTag": "New tool",
     "navProjects": "Projects",
-    "navHero": "Hero"
+    "navHero": "Hero",
+    "navTools": "Tools"
   }
 }

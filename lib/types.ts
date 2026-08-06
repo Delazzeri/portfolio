@@ -23,6 +23,7 @@ export type Tag = {
   nameEn: string;
   slug: string;
   category: TagCategory;
+  iconUrl: string | null;
 };
 
 export type Project = {

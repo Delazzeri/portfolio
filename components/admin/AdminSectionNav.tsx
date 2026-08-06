@@ -6,6 +6,7 @@ import { Link, usePathname } from '@/i18n/navigation';
 const sections = [
   { key: 'navProjects', href: '/admin' },
   { key: 'navHero', href: '/admin/hero' },
+  { key: 'navTools', href: '/admin/tools' },
 ] as const;
 
 export function AdminSectionNav() {

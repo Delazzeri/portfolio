@@ -59,9 +59,23 @@ export function ProjectCard({
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-4 pt-10">
           <p className="truncate text-[15px] font-medium text-white">{title}</p>
           {toolTags.length > 0 && (
-            <p className="mt-0.5 truncate font-mono text-[11px] uppercase tracking-wide text-white/70">
-              {toolTags.map((tag) => pickLocale(tag.namePt, tag.nameEn, locale)).join(' · ')}
-            </p>
+            <div className="mt-1 flex flex-wrap items-center gap-1.5">
+              {toolTags.map((tag) => {
+                const label = pickLocale(tag.namePt, tag.nameEn, locale);
+                return tag.iconUrl ? (
+                  <span key={tag.id} className="relative h-4 w-4 shrink-0">
+                    <Image src={tag.iconUrl} alt={label} fill sizes="16px" className="object-contain" />
+                  </span>
+                ) : (
+                  <span
+                    key={tag.id}
+                    className="font-mono text-[11px] uppercase tracking-wide text-white/70"
+                  >
+                    {label}
+                  </span>
+                );
+              })}
+            </div>
           )}
         </div>
       </motion.div>

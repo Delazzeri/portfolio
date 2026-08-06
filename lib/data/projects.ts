@@ -7,7 +7,7 @@ const PROJECT_SELECT = `
   cover_image_url, banner_image_url, position, published,
   project_images ( id, image_url, position ),
   project_links ( id, label, url, type, position ),
-  project_tags ( tags ( id, slug, name_pt, name_en, category ) )
+  project_tags ( tags ( id, slug, name_pt, name_en, category, icon_url ) )
 `;
 
 type ProjectRow = {
@@ -31,6 +31,7 @@ type ProjectRow = {
       name_pt: string;
       name_en: string;
       category: 'topic' | 'tool';
+      icon_url: string | null;
     } | null;
   }[];
 };
@@ -74,6 +75,7 @@ function mapProjectRow(row: ProjectRow): Project {
         namePt: tag.name_pt,
         nameEn: tag.name_en,
         category: tag.category,
+        iconUrl: tag.icon_url,
       })),
   };
 }

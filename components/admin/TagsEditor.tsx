@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import type { Tag, TagCategory } from '@/lib/types';
 import { pickLocale } from '@/lib/localized-field';
 import type { AppLocale } from '@/i18n/routing';
@@ -85,6 +87,55 @@ function TagCategoryEditor({
   );
 }
 
+function ToolTagPicker({
+  tags,
+  selected,
+  onToggle,
+  locale,
+}: {
+  tags: Tag[];
+  selected: Set<string>;
+  onToggle: (id: string) => void;
+  locale: AppLocale;
+}) {
+  if (tags.length === 0) {
+    return (
+      <p className="text-sm text-foreground/50">
+        Nenhuma ferramenta cadastrada —{' '}
+        <Link href="/admin/tools" className="text-accent hover:underline">
+          adicione em Admin → Ferramentas
+        </Link>
+        .
+      </p>
+    );
+  }
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag) => {
+        const isSelected = selected.has(tag.id);
+        const label = pickLocale(tag.namePt, tag.nameEn, locale);
+        return (
+          <button
+            key={tag.id}
+            type="button"
+            onClick={() => onToggle(tag.id)}
+            data-selected={isSelected}
+            className="flex items-center gap-2 rounded-full border border-hairline py-1.5 pl-2 pr-3 text-sm text-foreground/70 transition-colors data-[selected=true]:border-accent data-[selected=true]:bg-accent data-[selected=true]:text-white"
+          >
+            {tag.iconUrl ? (
+              <span className="relative h-5 w-5 shrink-0">
+                <Image src={tag.iconUrl} alt="" fill className="object-contain" />
+              </span>
+            ) : null}
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function TagsEditor({
   allTags,
   initialSelectedIds,
@@ -134,17 +185,7 @@ export function TagsEditor({
         <p className="mb-2 text-xs font-medium uppercase tracking-wide text-foreground/50">
           Ferramentas usadas
         </p>
-        <TagCategoryEditor
-          tags={toolTags}
-          selected={selected}
-          onToggle={toggle}
-          pending={pending.filter((tag) => tag.category === 'tool')}
-          onAddPending={(pt, en) => addPending(pt, en, 'tool')}
-          locale={locale}
-          placeholderPt="Nova ferramenta (ex: Photoshop)"
-          placeholderEn="New tool (e.g. Photoshop)"
-          addLabel="+ ferramenta"
-        />
+        <ToolTagPicker tags={toolTags} selected={selected} onToggle={toggle} locale={locale} />
       </div>
       <input type="hidden" name="selectedTagIds" value={JSON.stringify([...selected])} />
       <input type="hidden" name="newTags" value={JSON.stringify(pending)} />

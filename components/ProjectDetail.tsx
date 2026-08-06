@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
 import type { AppLocale } from '@/i18n/routing';
 import type { Project } from '@/lib/types';
@@ -55,14 +56,26 @@ export async function ProjectDetail({ project }: { project: Project }) {
 
         {toolTags.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {toolTags.map((tag) => (
-              <span
-                key={tag.id}
-                className="rounded-full bg-surface-solid px-2.5 py-1 text-[12px] text-foreground/60"
-              >
-                {pickLocale(tag.namePt, tag.nameEn, locale)}
-              </span>
-            ))}
+            {toolTags.map((tag) => {
+              const label = pickLocale(tag.namePt, tag.nameEn, locale);
+              return tag.iconUrl ? (
+                <span
+                  key={tag.id}
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-surface-solid p-1.5"
+                >
+                  <span className="relative h-full w-full">
+                    <Image src={tag.iconUrl} alt={label} fill className="object-contain" />
+                  </span>
+                </span>
+              ) : (
+                <span
+                  key={tag.id}
+                  className="rounded-full bg-surface-solid px-2.5 py-1 text-[12px] text-foreground/60"
+                >
+                  {label}
+                </span>
+              );
+            })}
           </div>
         )}
 
