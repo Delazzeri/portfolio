@@ -24,7 +24,7 @@ export function ProjectCard({
   const locale = useLocale() as AppLocale;
   const hoverCapable = useHoverCapable();
   const title = pickLocale(project.titlePt, project.titleEn, locale);
-  const badgeTag = project.tags.find((tag) => tag.category === 'tool');
+  const toolTags = project.tags.filter((tag) => tag.category === 'tool');
 
   return (
     <Link
@@ -58,9 +58,9 @@ export function ProjectCard({
         />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-4 pt-10">
           <p className="truncate text-[15px] font-medium text-white">{title}</p>
-          {badgeTag && (
+          {toolTags.length > 0 && (
             <p className="mt-0.5 truncate font-mono text-[11px] uppercase tracking-wide text-white/70">
-              {pickLocale(badgeTag.namePt, badgeTag.nameEn, locale)}
+              {toolTags.map((tag) => pickLocale(tag.namePt, tag.nameEn, locale)).join(' · ')}
             </p>
           )}
         </div>
