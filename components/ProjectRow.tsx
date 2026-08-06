@@ -8,10 +8,12 @@ export async function ProjectRow({
   tag,
   projects,
   seenProjectIds,
+  section,
 }: {
   tag: Tag;
   projects: Project[];
   seenProjectIds: Set<string>;
+  section: 'design' | 'code' | 'all';
 }) {
   const locale = (await getLocale()) as AppLocale;
 
@@ -28,6 +30,7 @@ export async function ProjectRow({
             <ProjectCard
               key={project.id}
               project={project}
+              section={section}
               variant="row"
               enableLayoutAnimation={!alreadySeen}
             />

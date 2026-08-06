@@ -26,7 +26,13 @@ export default async function DesignPage() {
       ) : (
         <div className="flex flex-col">
           {rows.map(({ tag, projects: tagProjects }) => (
-            <ProjectRow key={tag.id} tag={tag} projects={tagProjects} seenProjectIds={seenProjectIds} />
+            <ProjectRow
+              key={tag.id}
+              tag={tag}
+              projects={tagProjects}
+              seenProjectIds={seenProjectIds}
+              section="design"
+            />
           ))}
         </div>
       )}

@@ -12,21 +12,23 @@ import { glassCard } from '@/lib/glass-card';
 
 export function ProjectCard({
   project,
+  section,
   variant = 'grid',
   enableLayoutAnimation = true,
 }: {
   project: Project;
+  section: 'design' | 'code' | 'all';
   variant?: 'grid' | 'row';
   enableLayoutAnimation?: boolean;
 }) {
   const locale = useLocale() as AppLocale;
   const hoverCapable = useHoverCapable();
   const title = pickLocale(project.titlePt, project.titleEn, locale);
-  const badgeTag = project.tags.find((tag) => tag.category === 'topic');
+  const badgeTag = project.tags.find((tag) => tag.category === 'tool');
 
   return (
     <Link
-      href={`/${project.type}/${project.slug}`}
+      href={`/${section}/${project.slug}`}
       className={
         variant === 'row'
           ? 'group relative block w-[220px] shrink-0 snap-start rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-[260px]'

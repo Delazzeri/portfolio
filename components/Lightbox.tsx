@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -44,7 +45,7 @@ export function Lightbox({
   const current = images[index];
   if (!current) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       <motion.div
         className="fixed inset-0 z-[80] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
@@ -115,6 +116,7 @@ export function Lightbox({
           />
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
