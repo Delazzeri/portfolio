@@ -5,9 +5,12 @@ export const skills: SkillGroup[] = [
   {
     title: { pt: 'Front-end', en: 'Front-end' },
     items: [
+      { name: 'HTML5', icon: 'html5' },
+      { name: 'CSS3', icon: 'css' },
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'TypeScript', icon: 'typescript' },
       { name: 'React', icon: 'react' },
       { name: 'Next.js', icon: 'nextjs' },
-      { name: 'TypeScript', icon: 'typescript' },
       { name: 'Tailwind CSS', icon: 'tailwind' },
     ],
   },
@@ -19,7 +22,6 @@ export const skills: SkillGroup[] = [
     title: { pt: 'Ferramentas', en: 'Tools' },
     items: [
       { name: 'Git', icon: 'git' },
-      { name: 'VS Code', icon: 'vscode' },
       { name: 'Claude', icon: 'claude' },
       { name: 'Gemini', icon: 'gemini' },
       { name: 'GPT', icon: 'openai' },
@@ -33,6 +35,22 @@ export const skills: SkillGroup[] = [
       { name: 'Illustrator', icon: 'illustrator' },
       { name: 'InDesign', icon: 'indesign' },
       { name: 'Premiere Pro', icon: 'premiere' },
+      { name: 'After Effects', icon: 'aftereffects' },
     ],
   },
 ];
+
+const normalize = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+const iconByName = new Map(
+  skills.flatMap((group) =>
+    group.items.flatMap((item): [string, string][] =>
+      item.icon ? [[normalize(item.name), item.icon]] : [],
+    ),
+  ),
+);
+
+/** Ícone de uma tecnologia pelo nome (ex.: 'Next.js', 'nextjs', 'Tailwind CSS'). */
+export function skillIcon(name: string) {
+  return iconByName.get(normalize(name));
+}

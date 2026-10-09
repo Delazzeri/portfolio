@@ -8,11 +8,19 @@ type ProjectCoverProps = {
   project: Project;
   sizes: string;
   priority?: boolean;
+  /** Sem `cover`, escreve o título no bloco substituto (desligar quando já há título por cima). */
+  labelled?: boolean;
   className?: string;
 };
 
-/** Capa 16:10. Sem `cover`, mostra um bloco com o título (decorativo — o título já aparece ao lado). */
-export function ProjectCover({ project, sizes, priority, className }: ProjectCoverProps) {
+/** Capa 16:10. Sem `cover`, mostra um bloco substituto (decorativo — o título já aparece ao lado). */
+export function ProjectCover({
+  project,
+  sizes,
+  priority,
+  labelled = true,
+  className,
+}: ProjectCoverProps) {
   return (
     <div
       className={cn(
@@ -32,9 +40,9 @@ export function ProjectCover({ project, sizes, priority, className }: ProjectCov
       ) : (
         <div
           aria-hidden
-          className="flex size-full items-center justify-center bg-linear-to-br from-primary/15 to-transparent p-6 text-center font-heading text-step-2 font-bold text-foreground/70"
+          className="flex size-full items-center justify-center bg-linear-to-br from-primary/20 to-transparent p-6 text-center font-heading text-step-2 font-bold text-foreground/70"
         >
-          {project.title}
+          {labelled && project.title}
         </div>
       )}
     </div>

@@ -26,7 +26,7 @@ export default async function ProjectPage({ params }: PageProps<'/projetos/[slug
   if (!project) notFound();
 
   return (
-    <div className="container-page max-w-4xl py-section">
+    <div className="container-page py-section">
       <Link
         href="/#projetos"
         className="mb-8 inline-flex items-center gap-2 rounded-sm text-step--1 font-medium text-muted transition-colors hover:text-foreground"

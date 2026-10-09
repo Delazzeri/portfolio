@@ -29,6 +29,7 @@ export const ui = {
     year: { pt: 'Ano', en: 'Year' },
     type: { pt: 'Tipo', en: 'Type' },
     close: { pt: 'Fechar', en: 'Close' },
+    more: { pt: 'Ver mais', en: 'See more' },
     back: { pt: 'Voltar para projetos', en: 'Back to projects' },
   },
   projectTypes: {
@@ -39,8 +40,8 @@ export const ui = {
   },
   projectLinks: {
     live: { pt: 'Acessar projeto', en: 'View project' },
-    repo: { pt: 'Repositório', en: 'Repository' },
-    linkedinPost: { pt: 'Post no LinkedIn', en: 'LinkedIn post' },
+    repo: { pt: 'Acessar repositório', en: 'View repository' },
+    linkedinPost: { pt: 'Ver post no LinkedIn', en: 'View LinkedIn post' },
     figma: { pt: 'Figma', en: 'Figma' },
   },
   footer: {

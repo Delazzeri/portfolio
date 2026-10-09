@@ -29,7 +29,7 @@ export function Hero() {
         />
 
         <div className="max-w-2xl">
-          <p className="text-step-0 font-semibold text-primary">{t(profile.role)}</p>
+          <p className="text-step-0 font-semibold text-primary-ink">{t(profile.role)}</p>
           <h1 id={titleId} className="mt-2 text-step-5 font-bold">
             {profile.name}
           </h1>

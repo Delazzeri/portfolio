@@ -57,7 +57,7 @@ export function ProjectModal({ slug, titleId, children }: ProjectModalProps) {
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
-              className="relative mx-auto w-full max-w-4xl rounded-xl border border-border bg-surface p-4 shadow-lg sm:p-8"
+              className="relative mx-auto w-full max-w-6xl rounded-xl border border-border bg-surface p-4 shadow-lg sm:p-8"
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -67,7 +67,7 @@ export function ProjectModal({ slug, titleId, children }: ProjectModalProps) {
                 type="button"
                 onClick={close}
                 aria-label={t(ui.projects.close)}
-                className="absolute top-2 right-2 z-10 inline-flex size-10 items-center justify-center rounded-md bg-surface/90 text-muted transition-colors hover:bg-surface-elevated hover:text-foreground sm:top-4 sm:right-4"
+                className="absolute top-2 right-2 z-10 inline-flex size-10 items-center justify-center rounded-md bg-surface/90 text-primary-ink transition-colors hover:bg-surface-elevated sm:top-4 sm:right-4"
               >
                 <X aria-hidden className="size-5" />
               </button>

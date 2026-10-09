@@ -10,7 +10,7 @@ type ProvidersProps = {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
       {/* reducedMotion="user": com prefers-reduced-motion, desliga transforms e mantém opacidade */}
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeProvider>

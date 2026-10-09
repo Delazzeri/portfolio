@@ -4,21 +4,25 @@
 
 /* ------------------------------------------------------------------
  * Design tokens
- * Paleta provisória: neutros (zinc) + acento índigo.
+ * Paleta: fundo escuro neutro (tema padrão) + verde-sálvia #8CA986 nos detalhes.
+ * --primary       = sálvia, para preenchimentos (botões, seleção, bordas de hover).
+ * --primary-ink   = acento em texto/ícones. No tema claro a sálvia não tem contraste
+ *                   sobre fundo claro, então usa uma versão escurecida (#4a6644).
  * Para trocar a identidade, altere apenas os valores abaixo.
  * ------------------------------------------------------------------ */
 :root {
-  --background: #fafafa;
+  --background: #f7f7f5;
   --surface: #ffffff;
-  --surface-elevated: #ffffff;
-  --foreground: #18181b;
-  --muted: #52525b;
-  --border: #e4e4e7;
-  --primary: #4f46e5;
-  --primary-foreground: #ffffff;
-  --ring: #4f46e5;
+  --surface-elevated: #ecece8;
+  --foreground: #161816;
+  --muted: #5a5f59;
+  --border: #e2e3df;
+  --primary: #8ca986;
+  --primary-foreground: #0f110f;
+  --primary-ink: #4a6644;
+  --ring: #4a6644;
 
-  --shadow-color: 240 6% 10%;
+  --shadow-color: 100 5% 10%;
 
   /* TODO: fonte de títulos própria (§7); por ora usa a mesma do texto. */
   --font-display: var(--font-body);
@@ -28,15 +32,16 @@
 }
 
 .dark {
-  --background: #09090b;
-  --surface: #18181b;
-  --surface-elevated: #27272a;
-  --foreground: #fafafa;
-  --muted: #a1a1aa;
-  --border: #27272a;
-  --primary: #818cf8;
-  --primary-foreground: #09090b;
-  --ring: #818cf8;
+  --background: #0f110f;
+  --surface: #171a17;
+  --surface-elevated: #1f231f;
+  --foreground: #ecefe9;
+  --muted: #a3aaa1;
+  --border: #272c26;
+  --primary: #8ca986;
+  --primary-foreground: #0f110f;
+  --primary-ink: #8ca986;
+  --ring: #8ca986;
 
   --shadow-color: 0 0% 0%;
 }
@@ -56,6 +61,7 @@
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-ink: var(--primary-ink);
   --color-ring: var(--ring);
 
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;

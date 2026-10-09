@@ -102,7 +102,7 @@ export function MobileNav() {
                               aria-current={isActive ? 'location' : undefined}
                               className={cn(
                                 'block rounded-md px-3 py-3 text-step-1 font-medium text-foreground transition-colors hover:bg-surface-elevated',
-                                isActive && 'text-primary',
+                                isActive && 'text-primary-ink',
                               )}
                             >
                               {t(section.label)}

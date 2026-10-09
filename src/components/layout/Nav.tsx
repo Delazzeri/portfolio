@@ -23,7 +23,7 @@ export function Nav() {
                 aria-current={isActive ? 'location' : undefined}
                 className={cn(
                   'rounded-md px-3 py-2 text-step--1 font-medium text-muted transition-colors hover:text-foreground',
-                  isActive && 'text-primary hover:text-primary',
+                  isActive && 'text-primary-ink hover:text-primary-ink',
                 )}
               >
                 {t(section.label)}
