@@ -2,15 +2,16 @@
 
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from 'react';
+import Link from 'next/link';
+import { useCallback, useId, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 
 import { sections, ui } from '@/content/ui';
 import { useActiveSection } from '@/lib/use-active-section';
+import { useDialog } from '@/lib/use-dialog';
 import { cn, t } from '@/lib/utils';
 
 const sectionIds = sections.map((s) => s.id);
-const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 const noopSubscribe = () => () => {};
 
 export function MobileNav() {
@@ -32,43 +33,7 @@ export function MobileNav() {
     triggerRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    if (!open) return;
-
-    const panel = panelRef.current;
-    panel?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
-
-    const { overflow } = document.body.style;
-    document.body.style.overflow = 'hidden';
-
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        close();
-        return;
-      }
-      if (event.key !== 'Tab' || !panel) return;
-
-      const focusable = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE));
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (!first || !last) return;
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-
-    document.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = overflow;
-    };
-  }, [open, close]);
+  useDialog({ open, containerRef: panelRef, onClose: close });
 
   return (
     <div className="md:hidden">
@@ -131,8 +96,8 @@ export function MobileNav() {
                         const isActive = active === section.id;
                         return (
                           <li key={section.id}>
-                            <a
-                              href={`#${section.id}`}
+                            <Link
+                              href={`/#${section.id}`}
                               onClick={() => setOpen(false)}
                               aria-current={isActive ? 'location' : undefined}
                               className={cn(
@@ -141,7 +106,7 @@ export function MobileNav() {
                               )}
                             >
                               {t(section.label)}
-                            </a>
+                            </Link>
                           </li>
                         );
                       })}

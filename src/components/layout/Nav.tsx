@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { sections, ui } from '@/content/ui';
 import { useActiveSection } from '@/lib/use-active-section';
 import { cn, t } from '@/lib/utils';
@@ -16,8 +18,8 @@ export function Nav() {
           const isActive = active === section.id;
           return (
             <li key={section.id}>
-              <a
-                href={`#${section.id}`}
+              <Link
+                href={`/#${section.id}`}
                 aria-current={isActive ? 'location' : undefined}
                 className={cn(
                   'rounded-md px-3 py-2 text-step--1 font-medium text-muted transition-colors hover:text-foreground',
@@ -25,7 +27,7 @@ export function Nav() {
                 )}
               >
                 {t(section.label)}
-              </a>
+              </Link>
             </li>
           );
         })}

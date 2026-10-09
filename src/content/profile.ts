@@ -11,8 +11,8 @@ export const profile: Profile = {
     // Tradução da bio em PT — revisar antes da Fase 5.
     en: 'Front-End Developer working as a freelancer on institutional websites, web applications and product interfaces. I build with React, TypeScript and Tailwind CSS, integrate back-ends with Supabase and APIs, and bring designs created in Figma and the Adobe suite into code with fidelity and responsiveness.',
   },
-  avatar: '/images/avatar.webp', // TODO: adicionar arquivo
-  cvUrl: '/cv/cv-eduardo.pdf', // TODO: adicionar arquivo
+  avatar: '/images/avatar.jpeg',
+  cvUrl: '/cv/cv-eduardo.pdf',
   contacts: [
     {
       kind: 'email',

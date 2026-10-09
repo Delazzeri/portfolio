@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   description: t(profile.bio),
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({ children, modal }: LayoutProps<'/'>) {
   return (
     <html lang="pt-BR" className={bodyFont.variable} suppressHydrationWarning>
       <body id="top">
@@ -42,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             {children}
           </main>
           <Footer />
+          {modal}
         </Providers>
       </body>
     </html>
