@@ -1,14 +1,18 @@
+import { Contacts } from '@/components/sections/Contacts';
+import { Hero } from '@/components/sections/Hero';
+import { Skills } from '@/components/sections/Skills';
 import { Section } from '@/components/ui/Section';
-import { sections } from '@/content/ui';
+import { sectionLabels } from '@/content/ui';
 import { t } from '@/lib/utils';
 
-// Esqueleto da Fase 1: as seções existem para a nav por âncoras; o conteúdo entra nas Fases 2 e 3.
 export default function Home() {
   return (
     <>
-      {sections.map((section) => (
-        <Section key={section.id} id={section.id} title={t(section.label)} />
-      ))}
+      <Hero />
+      <Skills />
+      {/* Conteúdo de Projetos entra na Fase 3. */}
+      <Section id="projetos" title={t(sectionLabels.projetos)} />
+      <Contacts />
     </>
   );
 }
