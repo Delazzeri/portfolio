@@ -1,0 +1,14 @@
+# Um campo por linha, no formato "campo: valor". Linhas com # são ignoradas.
+# Obrigatórios: titulo, ano, tipo. Campos vazios ou ausentes não aparecem no site.
+# tipo: pessoal, freelance, faculdade ou trabalho | destaque: sim ou não (máx. 4 com "sim")
+# Opcionais: resumo (frase para o Google), papel (ex.: Front-end), figma (link).
+
+titulo: TODO: Projeto 5
+ano: 2026
+tipo: pessoal
+destaque: não
+stack:
+video:
+site:
+repositorio:
+linkedin:

@@ -9,6 +9,7 @@ import { skillIcon } from '@/content/skills';
 import { ui } from '@/content/ui';
 import type { Project } from '@/lib/types';
 import { cn, t } from '@/lib/utils';
+import { youtubeEmbedUrl } from '@/lib/video';
 
 import { ProjectCover } from './ProjectCover';
 
@@ -42,6 +43,7 @@ export function ProjectDetails({
   titleAs: Title,
   priority,
 }: ProjectDetailsProps) {
+  const videoUrl = project.video && youtubeEmbedUrl(project.video);
   const links = linkOrder.flatMap((key) => {
     const href = project.links[key];
     return href ? [{ key, href }] : [];
@@ -50,17 +52,16 @@ export function ProjectDetails({
   return (
     <article className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-10">
       <div className="flex flex-col gap-4">
-        {project.video ? (
-          <video
-            controls
-            playsInline
-            preload="metadata"
-            poster={project.cover}
-            aria-label={`${t(ui.projects.video)}: ${project.title}`}
+        {videoUrl ? (
+          <iframe
+            src={videoUrl}
+            title={`${t(ui.projects.video)}: ${project.title}`}
+            loading="lazy"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
             className="aspect-video w-full rounded-md border border-border bg-surface-elevated"
-          >
-            <source src={project.video} />
-          </video>
+          />
         ) : (
           <ProjectCover
             project={project}

@@ -25,11 +25,11 @@ export type SkillGroup = {
 export type Project = {
   slug: string;
   title: string;
-  summary: I18n; // 1 frase, aparece no card
+  summary: I18n; // 1 frase, usada na meta description
   description: I18n; // texto do modal
   cover?: string; // 16:10, em /public/images/projects (sem capa → bloco com o título)
   gallery?: string[];
-  video?: string; // .mp4/.webm em /public/videos/projects
+  video?: string; // link do YouTube
   stack: string[];
   role?: I18n; // meu papel: design, front, full-stack…
   year: number;

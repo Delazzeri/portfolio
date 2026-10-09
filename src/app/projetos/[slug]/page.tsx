@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { ProjectDetails } from '@/components/projects/ProjectDetails';
-import { getProject, projects } from '@/content/projects';
+import { getProject, getProjectParams } from '@/content/projects';
 import { ui } from '@/content/ui';
 import { t } from '@/lib/utils';
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return getProjectParams();
 }
 
 export async function generateMetadata({

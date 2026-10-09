@@ -43,7 +43,7 @@ O que adotamos da referência:
 | Animação | Framer Motion (`motion`) |
 | Tema | `next-themes` (estratégia `class`, sem flash no carregamento) |
 | Ícones | `lucide-react` + SVGs próprios em `src/components/icons` para marcas |
-| Conteúdo | Arquivos tipados em `src/content/*.ts` (sem banco nesta versão) |
+| Conteúdo | Arquivos tipados em `src/content/*.ts`; projetos em pastas `public/projetos/<pasta>/` lidas no build (sem banco nesta versão) |
 | Deploy | Vercel |
 | Qualidade | ESLint + Prettier (+ `prettier-plugin-tailwindcss`) |
 
@@ -83,15 +83,18 @@ src/
   content/
     profile.ts   # nome, título, bio, links, CV
     skills.ts
-    projects.ts
+    projects.ts  # API dos projetos (lê as pastas via lib/load-projects.ts)
   lib/
     types.ts
     utils.ts     # cn(), helpers
+    load-projects.ts  # lê e valida public/projetos/*
+    video.ts     # link do YouTube → player incorporado
   styles/
     globals.css  # tokens e base
 public/
   cv/            # cv-eduardo.pdf
-  images/projects/
+  images/        # avatar
+  projetos/      # uma pasta por projeto (projeto01, projeto02…): info.txt, descricao.txt, capa.*, galeria-N.*
 ```
 
 **Modal com URL:** o modal de projeto usa *intercepting + parallel routes*. Clicar num card abre `@modal/(.)projetos/[slug]` sobre a home; acessar `/projetos/[slug]` direto (ou recarregar) abre a página completa. `ProjectDetails` é o mesmo componente nos dois casos. Fechar o modal = `router.back()`.
@@ -127,10 +130,11 @@ export type SkillGroup = {
 export type Project = {
   slug: string;
   title: string;
-  summary: I18n;        // 1 frase, aparece no card
+  summary: I18n;        // 1 frase, usada na meta description (campo "resumo" ou 1ª frase da descrição)
   description: I18n;    // texto do modal
-  cover: string;        // 16:10, em /public/images/projects
+  cover?: string;       // 16:10 (capa.* na pasta do projeto); sem capa → bloco substituto
   gallery?: string[];
+  video?: string;       // link do YouTube
   stack: string[];
   role?: I18n;          // meu papel: design, front, full-stack…
   year: number;
@@ -140,8 +144,10 @@ export type Project = {
 };
 ```
 
+- **Projetos vêm de pastas** em `public/projetos/<pasta>/` (a pasta é o `slug`): `info.txt` (campos `chave: valor`), `descricao.txt`, `capa.*`, `galeria-N.*`. Formato completo no README. Erros de preenchimento quebram o build.
+- `video` é um link do YouTube, exibido como player incorporado (youtube-nocookie).
 - Destaques = `projects.filter(p => p.featured)`, máx. 4.
-- "Todos os projetos" lista todos, ordenados por `year` desc, com filtro por `type` (chips).
+- "Todos os projetos" lista todos, ordenados por `year` desc, **sem filtro** (decisão do Eduardo).
 - Links ausentes não renderizam botão (nunca botão desabilitado ou `href="#"`).
 
 ## 7. Design system
@@ -166,7 +172,7 @@ Defina tokens em `globals.css` como CSS variables e exponha no Tailwind. Compone
 1. **Header fixo** — nome/logo à esquerda; nav por âncoras (Sobre, Habilidades, Projetos, Contatos) com item ativo via `IntersectionObserver`; `ThemeToggle`. No mobile, menu em sheet com foco preso e fechamento por `Esc`.
 2. **Hero / Sobre** — avatar, nome, cargo, bio curta, CTAs "Download CV" (abre o PDF em nova aba, atributo `download`) e "Entrar em contato" (rola até Contatos).
 3. **Habilidades** — grupos de skills com ícone + nome. Sem barras de "nível %".
-4. **Projetos** — "Destaques" em cards grandes; "Todos os projetos" em grid responsivo (1/2/3 colunas) com filtro por tipo. Card: capa, título, resumo, até 4 badges de stack.
+4. **Projetos** — "Destaques" em cards grandes; "Todos os projetos" em grid responsivo (1/2/3 colunas), sem filtro. Card: capa escurecida com título + até 4 ícones de stack por cima; no hover cresce, a camada some e aparece "Ver mais". Detalhes: mídia (vídeo ou capa + galeria) ao lado do texto, botões de links embaixo.
 5. **Contatos** — lista de `contacts` com ícone, rótulo e valor; cada item é um link inteiro clicável.
 6. **Footer** — © ano dinâmico, voltar ao topo.
 
@@ -225,6 +231,6 @@ Defina tokens em `globals.css` como CSS variables e exponha no Tailwind. Compone
 - [ ] TODO: avatar (`/public/images/avatar.webp`)
 - [ ] TODO: CV em PDF (`/public/cv/cv-eduardo.pdf`)
 - [ ] TODO: contatos (e-mail, WhatsApp, LinkedIn, GitHub, Behance?)
-- [ ] TODO: lista de projetos com capas
+- [ ] TODO: preencher as pastas `public/projetos/projeto01…05` (info, descrição, capa, vídeo)
 - [ ] TODO: fontes e direção visual (§7)
 - [ ] TODO: domínio

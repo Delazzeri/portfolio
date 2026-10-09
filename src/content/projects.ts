@@ -1,35 +1,27 @@
-import type { Project } from '@/lib/types';
+import { getProjects } from '@/lib/load-projects';
 
-// TODO: substituir pelos 5 projetos reais (título, textos, stack, ano, tipo, destaque, links, capa).
-const placeholder = (n: number, featured: boolean): Project => ({
-  slug: `projeto-${n}`,
-  title: `TODO: Projeto ${n}`,
-  summary: { pt: 'TODO: resumo em uma frase.', en: 'TODO: one-sentence summary.' },
-  description: {
-    pt: 'TODO: descrição do projeto.',
-    en: 'TODO: project description.',
-  },
-  stack: [],
-  year: 2026, // TODO: ano real
-  featured,
-  type: 'pessoal', // TODO: tipo real
-  links: {},
-});
+/**
+ * Os projetos vêm das pastas em `public/projetos/` (uma por projeto: info.txt, descricao.txt,
+ * capa, galeria). Ver README → "Como adicionar um projeto".
+ */
+export { getProjects };
 
-export const projects: Project[] = [
-  placeholder(1, true),
-  placeholder(2, true),
-  placeholder(3, false),
-  placeholder(4, false),
-  placeholder(5, false),
-];
+/** Destaques (máx. 4), do mais recente ao mais antigo. */
+export function getFeaturedProjects() {
+  return getProjects()
+    .filter((project) => project.featured)
+    .slice(0, 4);
+}
 
-/** Destaques (máx. 4), na ordem do arquivo. */
-export const featuredProjects = projects.filter((p) => p.featured).slice(0, 4);
-
-/** Todos os projetos, do mais recente ao mais antigo. */
-export const projectsByYear = [...projects].sort((a, b) => b.year - a.year);
+/**
+ * Slugs para `generateStaticParams`. Com Cache Components a lista não pode ser vazia,
+ * então sem projetos devolve um slug de reserva (a página responde 404).
+ */
+export function getProjectParams() {
+  const params = getProjects().map((project) => ({ slug: project.slug }));
+  return params.length > 0 ? params : [{ slug: 'sem-projetos' }];
+}
 
 export function getProject(slug: string) {
-  return projects.find((p) => p.slug === slug);
+  return getProjects().find((project) => project.slug === slug);
 }

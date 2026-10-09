@@ -1,0 +1,4 @@
+TODO: descrição do projeto 1.
+
+Use uma linha em branco para separar parágrafos.
+• Listas com "•" funcionam, uma por linha.
