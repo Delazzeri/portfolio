@@ -138,8 +138,9 @@ export type Project = {
   stack: string[];
   role?: I18n;          // meu papel: design, front, full-stack…
   year: number;
+  month?: number;       // 1–12, opcional ("ano: Outubro de 2026" no info.txt)
   featured: boolean;    // true → aparece em "Destaques"
-  type: 'pessoal' | 'freelance' | 'faculdade' | 'trabalho';
+  type: 'pessoal' | 'freelance' | 'faculdade' | 'profissional';
   links: { live?: string; repo?: string; linkedinPost?: string; figma?: string };
 };
 ```
@@ -147,7 +148,7 @@ export type Project = {
 - **Projetos vêm de pastas** em `public/projetos/<pasta>/` (a pasta é o `slug`): `info.txt` (campos `chave: valor`), `descricao.txt`, `capa.*`, `galeria-N.*`. Formato completo no README. Erros de preenchimento quebram o build.
 - `video` é um link do YouTube, exibido como player incorporado (youtube-nocookie).
 - Destaques = `projects.filter(p => p.featured)`, máx. 4.
-- "Todos os projetos" lista todos, ordenados por `year` desc, **sem filtro** (decisão do Eduardo).
+- "Todos os projetos" lista todos, ordenados por `year` e `month` desc (sem mês → fim do ano), **sem filtro** (decisão do Eduardo).
 - Links ausentes não renderizam botão (nunca botão desabilitado ou `href="#"`).
 
 ## 7. Design system
@@ -172,7 +173,7 @@ Defina tokens em `globals.css` como CSS variables e exponha no Tailwind. Compone
 1. **Header fixo** — nome/logo à esquerda; nav por âncoras (Sobre, Habilidades, Projetos, Contatos) com item ativo via `IntersectionObserver`; `ThemeToggle`. No mobile, menu em sheet com foco preso e fechamento por `Esc`.
 2. **Hero / Sobre** — avatar, nome, cargo, bio curta, CTAs "Download CV" (abre o PDF em nova aba, atributo `download`) e "Entrar em contato" (rola até Contatos).
 3. **Habilidades** — grupos de skills com ícone + nome. Sem barras de "nível %".
-4. **Projetos** — "Destaques" em cards grandes; "Todos os projetos" em grid responsivo (1/2/3 colunas), sem filtro. Card: capa escurecida com título + até 4 ícones de stack por cima; no hover cresce, a camada some e aparece "Ver mais". Detalhes: mídia (vídeo ou capa + galeria) ao lado do texto, botões de links embaixo.
+4. **Projetos** — "Destaques" em cards grandes; "Todos os projetos" em grid responsivo (1/2/3 colunas), sem filtro. Card: capa escurecida com título + todos os ícones da stack por cima (tecnologia sem ícone aparece como texto); no hover cresce, a camada some e aparece "Ver mais". Detalhes: mídia (vídeo ou capa + galeria) ao lado do texto, botões de links embaixo.
 5. **Contatos** — lista de `contacts` com ícone, rótulo e valor; cada item é um link inteiro clicável.
 6. **Footer** — © ano dinâmico, voltar ao topo.
 

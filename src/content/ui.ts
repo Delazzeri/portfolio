@@ -36,7 +36,7 @@ export const ui = {
     pessoal: { pt: 'Pessoal', en: 'Personal' },
     freelance: { pt: 'Freelance', en: 'Freelance' },
     faculdade: { pt: 'Faculdade', en: 'University' },
-    trabalho: { pt: 'Trabalho', en: 'Work' },
+    profissional: { pt: 'Profissional', en: 'Professional' },
   },
   projectLinks: {
     live: { pt: 'Acessar projeto', en: 'View project' },
@@ -49,6 +49,22 @@ export const ui = {
     backToTop: { pt: 'Voltar ao topo', en: 'Back to top' },
   },
 } satisfies Record<string, I18n | Record<string, I18n>>;
+
+/** Meses na ordem (índice 0 = janeiro): exibição e leitura do campo "ano" dos projetos. */
+export const monthNames: I18n[] = [
+  { pt: 'Janeiro', en: 'January' },
+  { pt: 'Fevereiro', en: 'February' },
+  { pt: 'Março', en: 'March' },
+  { pt: 'Abril', en: 'April' },
+  { pt: 'Maio', en: 'May' },
+  { pt: 'Junho', en: 'June' },
+  { pt: 'Julho', en: 'July' },
+  { pt: 'Agosto', en: 'August' },
+  { pt: 'Setembro', en: 'September' },
+  { pt: 'Outubro', en: 'October' },
+  { pt: 'Novembro', en: 'November' },
+  { pt: 'Dezembro', en: 'December' },
+];
 
 export const sectionLabels = {
   sobre: { pt: 'Sobre', en: 'About' },

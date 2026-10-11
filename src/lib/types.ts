@@ -33,8 +33,9 @@ export type Project = {
   stack: string[];
   role?: I18n; // meu papel: design, front, full-stack…
   year: number;
+  month?: number; // 1–12, opcional ("ano: Outubro de 2026")
   featured: boolean; // true → aparece em "Destaques"
-  type: 'pessoal' | 'freelance' | 'faculdade' | 'trabalho';
+  type: 'pessoal' | 'freelance' | 'faculdade' | 'profissional';
   links: { live?: string; repo?: string; linkedinPost?: string; figma?: string };
 };
 

@@ -8,7 +8,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { skillIcon } from '@/content/skills';
 import { ui } from '@/content/ui';
 import type { Project } from '@/lib/types';
-import { cn, t } from '@/lib/utils';
+import { cn, projectDate, t } from '@/lib/utils';
 import { youtubeEmbedUrl } from '@/lib/video';
 
 import { ProjectCover } from './ProjectCover';
@@ -128,7 +128,7 @@ export function ProjectDetails({
           </ul>
         )}
 
-        <p className="text-step--1 font-semibold text-primary-ink">{project.year}</p>
+        <p className="text-step--1 font-semibold text-primary-ink">{projectDate(project)}</p>
       </div>
 
       {links.length > 0 && (

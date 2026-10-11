@@ -4,11 +4,9 @@ import { BrandIcon } from '@/components/icons/BrandIcon';
 import { skillIcon } from '@/content/skills';
 import { ui } from '@/content/ui';
 import type { Project } from '@/lib/types';
-import { cn, t } from '@/lib/utils';
+import { cn, projectDate, t } from '@/lib/utils';
 
 import { ProjectCover } from './ProjectCover';
-
-const MAX_STACK = 4;
 
 type ProjectCardProps = {
   project: Project;
@@ -20,7 +18,7 @@ type ProjectCardProps = {
  * escura e a stack somem e aparece o "Ver mais". Em telas de toque (sem hover) a camada fica.
  */
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
-  const stack = project.stack.slice(0, MAX_STACK);
+  const { stack } = project;
 
   return (
     <Link
@@ -45,18 +43,18 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             {project.title}
           </h4>
           {stack.length > 0 && (
-            <ul className="flex flex-wrap justify-center gap-2" aria-label={t(ui.projects.stack)}>
+            <ul className="flex flex-wrap justify-center gap-1.5" aria-label={t(ui.projects.stack)}>
               {stack.map((tech) => {
                 const icon = skillIcon(tech);
                 return (
                   <li
                     key={tech}
                     title={tech}
-                    className="inline-flex h-10 min-w-10 items-center justify-center rounded-md border border-border bg-surface px-2 text-primary-ink"
+                    className="inline-flex h-7.5 min-w-7.5 items-center justify-center rounded-md border border-border bg-surface px-1.5 text-primary-ink"
                   >
                     {icon ? (
                       <>
-                        <BrandIcon name={icon} className="size-6" />
+                        <BrandIcon name={icon} className="size-4.5" />
                         <span className="sr-only">{tech}</span>
                       </>
                     ) : (
@@ -71,7 +69,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
       </div>
 
       <div className="mt-auto flex items-center justify-between gap-4 border-t border-border px-4 py-3 transition-colors group-hover:border-primary">
-        <span className="text-step--1 font-medium text-muted">{project.year}</span>
+        <span className="text-step--1 font-medium text-muted">{projectDate(project)}</span>
         <span className="rounded-full bg-primary px-4 py-1.5 text-step--1 font-semibold text-primary-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
           {t(ui.projects.more)}
         </span>

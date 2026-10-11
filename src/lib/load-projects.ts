@@ -3,6 +3,8 @@ import path from 'node:path';
 
 import { cache } from 'react';
 
+import { monthNames } from '@/content/ui';
+
 import type { Project } from './types';
 import { youtubeEmbedUrl } from './video';
 
@@ -20,7 +22,8 @@ import { youtubeEmbedUrl } from './video';
 const PROJECTS_DIR = path.join(process.cwd(), 'public', 'projetos');
 const IMAGE_EXT = /\.(jpe?g|png|webp|avif)$/i;
 const BOM = 0xfeff; // Bloco de Notas do Windows pode salvar com BOM
-const TYPES: Project['type'][] = ['pessoal', 'freelance', 'faculdade', 'trabalho'];
+const TYPES: Project['type'][] = ['pessoal', 'freelance', 'faculdade', 'profissional'];
+const TYPE_ALIASES: Record<string, Project['type']> = { trabalho: 'profissional' };
 type Field =
   | 'titulo'
   | 'resumo'
@@ -109,6 +112,27 @@ function parseYes(value: string | undefined, file: string) {
   throw new Error(`${file} — "destaque" deve ser "sim" ou "não" (recebido "${value}").`);
 }
 
+/** Aceita "2026", "Outubro de 2026", "outubro 2026" ou "10/2026" (mês opcional). */
+function parseDate(value: string | undefined, file: string): { year: number; month?: number } {
+  const match = normalize(value ?? '').match(/^(?:(.+?)(?:\s+de\s+|\s*\/\s*|\s+))?(\d{4})$/);
+  const year = Number(match?.[2]);
+  const rawMonth = match?.[1];
+
+  if (!match || !Number.isInteger(year)) {
+    throw new Error(
+      `${file} — "ano" deve ser ex.: 2026, Outubro de 2026 ou 10/2026 (recebido "${value}").`,
+    );
+  }
+  if (rawMonth === undefined) return { year };
+
+  const byName = monthNames.findIndex(({ pt, en }) => [pt, en].map(normalize).includes(rawMonth));
+  const month = byName !== -1 ? byName + 1 : Number(rawMonth);
+  if (!Number.isInteger(month) || month < 1 || month > 12) {
+    throw new Error(`${file} — mês inválido em "ano" (recebido "${value}").`);
+  }
+  return { year, month };
+}
+
 /** Primeira frase da descrição, como resumo de reserva (usado na meta description). */
 function firstSentence(text: string) {
   const line = text.split('\n').find((l) => l.trim()) ?? '';
@@ -133,12 +157,10 @@ function loadProject(slug: string): Project {
 
   if (!info.titulo) throw new Error(`${infoFile} — campo "titulo" é obrigatório.`);
 
-  const year = Number(info.ano);
-  if (!Number.isInteger(year)) {
-    throw new Error(`${infoFile} — "ano" deve ser um número, ex.: 2025 (recebido "${info.ano}").`);
-  }
+  const { year, month } = parseDate(info.ano, infoFile);
 
-  const type = normalize(info.tipo ?? '');
+  const rawType = normalize(info.tipo ?? '');
+  const type = TYPE_ALIASES[rawType] ?? rawType;
   if (!isType(type)) {
     throw new Error(
       `${infoFile} — "tipo" deve ser: ${TYPES.join(', ')} (recebido "${info.tipo}").`,
@@ -178,6 +200,7 @@ function loadProject(slug: string): Project {
       .filter(Boolean),
     role: info.papel ? { pt: info.papel, en: info.papel } : undefined,
     year,
+    month,
     featured: parseYes(info.destaque, infoFile),
     type,
     links: {
@@ -189,7 +212,7 @@ function loadProject(slug: string): Project {
   };
 }
 
-/** Todos os projetos, do mais recente ao mais antigo (empate: ordem da pasta). */
+/** Todos os projetos, do mais recente ao mais antigo por ano e mês (sem mês → fim do ano; empate: ordem da pasta). */
 export const getProjects = cache((): Project[] => {
   if (!fs.existsSync(PROJECTS_DIR)) return [];
 
@@ -199,5 +222,5 @@ export const getProjects = cache((): Project[] => {
     .map((entry) => entry.name)
     .sort()
     .map(loadProject)
-    .sort((a, b) => b.year - a.year);
+    .sort((a, b) => b.year - a.year || (b.month ?? 0) - (a.month ?? 0));
 });

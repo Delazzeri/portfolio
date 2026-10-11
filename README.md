@@ -36,7 +36,7 @@ public/projetos/projeto06/
 
 ```
 titulo: Collage.fm
-ano: 2025
+ano: Outubro de 2025
 tipo: pessoal
 destaque: sim
 stack: Next.js, React, TypeScript, Tailwind CSS
@@ -46,7 +46,8 @@ repositorio: https://github.com/...
 linkedin: https://www.linkedin.com/posts/...
 ```
 
-- Obrigatórios: `titulo`, `ano` e `tipo` (`pessoal`, `freelance`, `faculdade` ou `trabalho`).
+- `ano`: só o ano (`2026`) ou com mês (`Outubro de 2026`, `outubro 2026`, `10/2026`). Com mês, o site mostra "Outubro de 2026" e ordena pelo mês também.
+- Obrigatórios: `titulo`, `ano` e `tipo` (`pessoal`, `freelance`, `faculdade` ou `profissional`; "trabalho" também é aceito como `profissional`).
 - `destaque`: `sim` ou `não` (no máximo 4 destaques aparecem). `video`: link do YouTube.
 - Opcionais extras: `resumo` (frase para o Google; sem ele, usa a 1ª frase da descrição), `papel` (ex.: Front-end) e `figma` (link).
 - Comentários só em linha própria, começando com `#`.
