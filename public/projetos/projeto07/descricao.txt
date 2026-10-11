@@ -1,0 +1,9 @@
+O Synergy é um protótipo de plataforma desenhado no Figma para conectar empresas com interesses mútuos de fusão, aquisição ou investimento, funcionando como um "Tinder de empresas".
+
+Após idealizar o conceito e desenhar a experiência do usuário (UX/UI), foram desenvolvidas as seguintes funcionalidades e diferenciais na interface:
+
+• Sistema interativo de Match para aproximar investidores, compradores e empresas à procura de M&A;
+• Fluxo guiado pós-match que libera etapas avançadas do processo de M&A;
+• Filtros inteligentes por setor, faturamento, porte e objetivos estratégicos do negócio;
+• Perfil corporativo estruturado mantendo informações confidenciais até que haja o interesse mútuo;
+• Protótipo navegável em alta fidelidade no Figma, otimizado para navegação Desktop e Mobile.
