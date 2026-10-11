@@ -1,14 +1,14 @@
 # Um campo por linha, no formato "campo: valor". Linhas com # são ignoradas.
 # Obrigatórios: titulo, ano, tipo. Campos vazios ou ausentes não aparecem no site.
-# tipo: pessoal, freelance, faculdade ou trabalho | destaque: sim ou não (máx. 4 com "sim")
+# ano: 2026 ou com mês (Outubro de 2026, 10/2026) | tipo: pessoal, freelance, faculdade ou profissional | destaque: sim ou não (máx. 4 com "sim")
 # Opcionais: resumo (frase para o Google), papel (ex.: Front-end), figma (link).
 
-titulo: TODO: Projeto 5
-ano: 2026
+titulo: Portfólio
+ano: Julho de 2026
 tipo: pessoal
 destaque: não
-stack:
+stack: TypeScript, React, Next.js, Tailwind CSS, Claude, Photoshop
 video:
-site:
-repositorio:
+site: https://eduardo-digital-lab.vercel.app/
+repositorio: https://github.com/Delazzeri/eduardo-digital-lab
 linkedin:

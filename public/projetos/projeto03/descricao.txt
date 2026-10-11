@@ -1,4 +1,12 @@
-TODO: descrição do projeto 3.
+O Marketing OS Beta é uma aplicação interativa e sistema operacional voltado para a gestão de estratégias de marketing, planejamento de campanhas e organização de conteúdos.
 
-Use uma linha em branco para separar parágrafos.
-• Listas com "•" funcionam, uma por linha.
+Após concluir a estrutura principal, foram aplicadas diversas melhorias e funcionalidades, como:
+
+• Tela de autenticação com campo para colocar usuário e senha para acesso seguro à plataforma;
+• Painel de controle (Dashboard) com métricas de desempenho de quadros e fluxo de postagem;
+• Módulos organizados para o planejamento de conteúdos, cronograma de postagens e gestão de tarefas de marketing;
+• Ferramentas integradas para acompanhamento de leads e análise de canais de aquisição;
+• Versão Desktop e Mobile totalmente responsiva e otimizada.
+
+User: 
+Senha: 

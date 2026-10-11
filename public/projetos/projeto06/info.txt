@@ -1,0 +1,14 @@
+# Um campo por linha, no formato "campo: valor". Linhas com # são ignoradas.
+# Obrigatórios: titulo, ano, tipo. Campos vazios ou ausentes não aparecem no site.
+# ano: 2026 ou com mês (Outubro de 2026, 10/2026) | tipo: pessoal, freelance, faculdade ou profissional | destaque: sim ou não (máx. 4 com "sim")
+# Opcionais: resumo (frase para o Google), papel (ex.: Front-end), figma (link).
+
+titulo: UniDiFranco
+ano: Julho de 2026
+tipo: profissional
+destaque: não
+stack: WordPress, Elementor, Photoshop
+video:
+site: https://unidifranco.com.br/
+repositorio: 
+linkedin:

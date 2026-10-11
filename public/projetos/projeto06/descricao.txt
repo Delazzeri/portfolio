@@ -1,0 +1,8 @@
+O site da UniDiFranco é uma plataforma educacional voltada para a oferta de cursos, formação continuada e desenvolvimento profissional.
+
+Após concluir a estrutura principal, foram aplicadas diversas melhorias e funcionalidades, como:
+
+• Catálogo completo de cursos e formações divididos por áreas do conhecimento;
+• Seção sobre a instituição, destacando metodologia de ensino, diferenciais e certificações;
+• Botão e integração direta com o WhatsApp para entrar em contato rápido e tirar dúvidas com a equipe;
+• Versão Desktop e Mobile totalmente responsiva e acessível.

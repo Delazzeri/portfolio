@@ -1,4 +1,9 @@
-TODO: descrição do projeto 4.
+O site da Judice é uma plataforma web voltada para a prestação de serviços jurídicos e atendimento ao cliente.
 
-Use uma linha em branco para separar parágrafos.
-• Listas com "•" funcionam, uma por linha.
+Após concluir a estrutura principal, foram aplicadas diversas melhorias e funcionalidades, como:
+
+• Apresentação completa das áreas de atuação do escritório e corpo de advogados/especialistas;
+• Sistema interativo para agendamento de consultas ou envio de dúvidas via formulário de contato / WhatsApp;
+• Seção de blog e artigos informativos sobre direitos, jurisprudências e atualizações legislativas;
+• Área de depoimentos, casos de sucesso e institucional com valores e história do escritório;
+• Design moderno, elegante e versão Desktop e Mobile totalmente adaptável e responsiva.

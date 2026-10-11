@@ -1,4 +1,9 @@
-TODO: descrição do projeto 1.
+O site da Vispe Capital é uma aplicação interativa voltada para inteligência financeira estratégica e controladoria para negócios.
 
-Use uma linha em branco para separar parágrafos.
-• Listas com "•" funcionam, uma por linha.
+Após concluir a estrutura principal, foram aplicadas diversas melhorias e funcionalidades, como:
+
+• Soluções completas e estruturadas, incluindo M&A, Captação de Recursos e Planejamento Tributário;
+• Seção interativa com métricas de impacto e resultados;
+• Apresentação de ferramentas de CFO as Service com painéis de controle de indicadores financeiros;
+• Seções dinâmicas para agendamento de diagnóstico financeiro e visualização de depoimentos;
+• Versão Desktop e Mobile totalmente responsiva.

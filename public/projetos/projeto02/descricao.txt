@@ -1,4 +1,9 @@
-TODO: descrição do projeto 2.
+O site institucional da Tecnomola é uma plataforma desenvolvida para apresentar a indústria de molas e seus produtos de forma moderna e intuitiva.
 
-Use uma linha em branco para separar parágrafos.
-• Listas com "•" funcionam, uma por linha.
+Após concluir a estrutura principal, foram aplicadas diversas funcionalidades e melhorias, como:
+
+• Catálogo interativo de produtos detalhando a linha de molas espirais e helicoidais e artefatos de arame;
+• Sistema de solicitação de orçamento online sob medida para clientes dos setores rodoviário, agrícola e industrial;
+• Seção institucional com a história da empresa, visão, missão e certificações de qualidade;
+• Canal de suporte e contato direto, incluindo áreas para "Trabalhe Conosco" e notícias da empresa;
+• Versão Desktop e Mobile totalmente otimizada e responsiva.

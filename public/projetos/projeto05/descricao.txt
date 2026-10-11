@@ -1,4 +1,8 @@
-TODO: descrição do projeto 5.
+O Eduardo Digital Lab é um portfólio de desenvolvimento de aplicações modernas, soluções de inteligência artificial projetos de design gráfico.
 
-Use uma linha em branco para separar parágrafos.
-• Listas com "•" funcionam, uma por linha.
+Após concluir a estrutura principal, foram aplicadas diversas melhorias e funcionalidades, como:
+
+• Seção de destaque com os principais projetos de desenvolvimento web e software criados;
+• Exibição de tecnologias, linguagens e ferramentas dominadas no ecossistema de programação;
+• Seção sobre mim com trajetória profissional, objetivos e conhecimentos técnicos;
+• Canais de contato e links diretos para redes profissionais (como GitHub e LinkedIn);

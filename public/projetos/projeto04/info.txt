@@ -1,14 +1,14 @@
 # Um campo por linha, no formato "campo: valor". Linhas com # são ignoradas.
 # Obrigatórios: titulo, ano, tipo. Campos vazios ou ausentes não aparecem no site.
-# tipo: pessoal, freelance, faculdade ou trabalho | destaque: sim ou não (máx. 4 com "sim")
+# ano: 2026 ou com mês (Outubro de 2026, 10/2026) | tipo: pessoal, freelance, faculdade ou profissional | destaque: sim ou não (máx. 4 com "sim")
 # Opcionais: resumo (frase para o Google), papel (ex.: Front-end), figma (link).
 
-titulo: TODO: Projeto 4
-ano: 2026
-tipo: pessoal
+titulo: Judice
+ano: Agosto de 2026
+tipo: profissional
 destaque: não
-stack:
+stack: TypeScript, React, Next.js, Tailwind CSS, Claude
 video:
-site:
-repositorio:
+site: https://judice.vercel.app/
+repositorio:https://github.com/Delazzeri/judice
 linkedin:
