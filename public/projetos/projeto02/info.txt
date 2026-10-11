@@ -12,3 +12,4 @@ video:
 site: https://tecnomola.vercel.app/
 repositorio: https://github.com/Delazzeri/tecnomola
 linkedin:
+figma:

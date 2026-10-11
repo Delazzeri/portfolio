@@ -12,3 +12,4 @@ video:
 site: https://judice.vercel.app/
 repositorio:https://github.com/Delazzeri/judice
 linkedin:
+figma:

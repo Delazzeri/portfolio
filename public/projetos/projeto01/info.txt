@@ -12,3 +12,4 @@ video:
 site: https://vispe.vercel.app/
 repositorio: https://github.com/Delazzeri/vispe
 linkedin:
+figma:

@@ -42,7 +42,7 @@ export const ui = {
     live: { pt: 'Acessar projeto', en: 'View project' },
     repo: { pt: 'Acessar repositório', en: 'View repository' },
     linkedinPost: { pt: 'Ver post no LinkedIn', en: 'View LinkedIn post' },
-    figma: { pt: 'Figma', en: 'Figma' },
+    figma: { pt: 'Ver no Figma', en: 'View on Figma' },
   },
   footer: {
     rights: { pt: 'Todos os direitos reservados.', en: 'All rights reserved.' },

@@ -12,3 +12,4 @@ video:
 site: https://marketing-os-beta-pearl.vercel.app/
 repositorio: https://github.com/Delazzeri/marketing-os
 linkedin:
+figma:

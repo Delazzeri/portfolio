@@ -12,3 +12,4 @@ video:
 site: https://eduardo-digital-lab.vercel.app/
 repositorio: https://github.com/Delazzeri/eduardo-digital-lab
 linkedin:
+figma:
