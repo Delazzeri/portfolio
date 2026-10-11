@@ -8,5 +8,10 @@ Após concluir a estrutura principal, foram aplicadas diversas melhorias e funci
 • Ferramentas integradas para acompanhamento de leads e análise de canais de aquisição;
 • Versão Desktop e Mobile totalmente responsiva e otimizada.
 
+⚠️ Ponto de Atenção:
+O projeto atualmente sofre lentidão para o carregamento e inserção de informações. Esta questão já foi identificada e a otimização de performance está mapeada como uma melhoria futura essencial para a experiência do usuário.
+
+Credenciais de Acesso:
+
 Email: tester@marketingos.dev
 Senha: Tester2026
