@@ -20,7 +20,7 @@ const bodyFont = Geist({
 // Metadata base; a versão completa (canonical, Open Graph, Twitter) entra na Fase 4.
 export const metadata: Metadata = {
   title: {
-    default: `${profile.name} — ${t(profile.role)}`,
+    default: t(ui.siteTitle),
     template: `%s | ${profile.name}`,
   },
   description: t(profile.bio),

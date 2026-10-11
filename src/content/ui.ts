@@ -2,6 +2,10 @@ import type { I18n, SectionId } from '@/lib/types';
 
 /** Textos de interface (não-pessoais). */
 export const ui = {
+  siteTitle: {
+    pt: 'Portfólio | Eduardo Delazeri - Desenvolvedor Front-End',
+    en: 'Portfolio | Eduardo Delazeri - Front-End Developer',
+  },
   skipLink: { pt: 'Pular para o conteúdo', en: 'Skip to content' },
   nav: {
     label: { pt: 'Navegação principal', en: 'Main navigation' },
