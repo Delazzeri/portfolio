@@ -8,5 +8,5 @@ Após concluir a estrutura principal, foram aplicadas diversas melhorias e funci
 • Ferramentas integradas para acompanhamento de leads e análise de canais de aquisição;
 • Versão Desktop e Mobile totalmente responsiva e otimizada.
 
-User: 
-Senha: 
+Email: tester@marketingos.dev
+Senha: Tester2026
