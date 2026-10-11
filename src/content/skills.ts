@@ -19,12 +19,18 @@ export const skills: SkillGroup[] = [
     items: [{ name: 'Supabase', icon: 'supabase' }],
   },
   {
+    title: { pt: 'CMS', en: 'CMS' },
+    items: [
+      { name: 'WordPress', icon: 'wordpress' },
+      { name: 'Elementor', icon: 'elementor' },
+    ],
+  },
+  {
     title: { pt: 'Ferramentas', en: 'Tools' },
     items: [
       { name: 'Git', icon: 'git' },
       { name: 'Claude', icon: 'claude' },
       { name: 'Gemini', icon: 'gemini' },
-      { name: 'GPT', icon: 'openai' },
     ],
   },
   {
@@ -35,7 +41,6 @@ export const skills: SkillGroup[] = [
       { name: 'Illustrator', icon: 'illustrator' },
       { name: 'InDesign', icon: 'indesign' },
       { name: 'Premiere Pro', icon: 'premiere' },
-      { name: 'After Effects', icon: 'aftereffects' },
     ],
   },
 ];
