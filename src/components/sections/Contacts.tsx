@@ -8,11 +8,13 @@ import { t } from '@/lib/utils';
 export function Contacts() {
   return (
     <Section id="contatos" title={t(sectionLabels.contatos)} centered>
-      <ul className="flex flex-wrap justify-center gap-x-10 gap-y-8 sm:gap-x-16">
+      {/* Mobile: 2 colunas iguais (itens alinhados); sm+: linha centralizada. */}
+      <ul className="grid grid-cols-2 gap-x-2 gap-y-8 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-16">
         {profile.contacts.map((contact, index) => {
           const isExternal = contact.href.startsWith('http');
+          const [user, domain] = contact.value.split('@');
           return (
-            <li key={contact.kind}>
+            <li key={contact.kind} className="flex min-w-0 justify-center">
               <Reveal index={index}>
                 <a
                   href={contact.href}
@@ -26,7 +28,15 @@ export function Contacts() {
                   <span className="flex flex-col gap-1">
                     <span className="font-semibold">{t(contact.label)}</span>
                     <span className="text-step--1 text-muted transition-colors group-hover:text-foreground">
-                      {contact.value}
+                      {/* E-mail longo quebra antes do "@" em telas estreitas. */}
+                      {domain === undefined ? (
+                        contact.value
+                      ) : (
+                        <>
+                          {user}
+                          <wbr />@{domain}
+                        </>
+                      )}
                     </span>
                   </span>
                 </a>
