@@ -9,7 +9,7 @@ tipo: Profissional
 destaque: sim
 stack: TypeScript, React, Next.js,Tailwind CSS, Claude, Photoshop
 video:
-site: https://vispe.vercel.app/
+site:
 repositorio: https://github.com/Delazzeri/vispe
 linkedin:
 figma:
