@@ -35,7 +35,8 @@ type ProjectDetailsProps = {
 
 /**
  * Conteúdo do projeto — o mesmo na página `/projetos/[slug]` e no modal.
- * Desktop: mídia (vídeo ou capa + galeria) à esquerda, texto à direita, botões embaixo.
+ * Desktop: mídia (vídeo ou capa + galeria), stack e links à esquerda; título e texto à direita.
+ * Mobile: mídia → texto → stack e links.
  */
 export function ProjectDetails({
   project,
@@ -50,8 +51,8 @@ export function ProjectDetails({
   });
 
   return (
-    <article className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-10">
-      <div className="flex flex-col gap-4">
+    <article className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-6">
+      <div className="flex flex-col gap-4 lg:col-start-1 lg:row-start-1">
         {videoUrl ? (
           <iframe
             src={videoUrl}
@@ -90,11 +91,13 @@ export function ProjectDetails({
         )}
       </div>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 lg:col-start-2 lg:row-span-2 lg:row-start-1">
         <header className="flex flex-col gap-2 pr-10">
           <p className="text-step--1 font-semibold text-muted">
             {t(ui.projectTypes[project.type])}
             {project.role && <> · {t(project.role)}</>}
+            {' · '}
+            <span className="text-primary-ink">{projectDate(project)}</span>
           </p>
           <Title
             id={titleId}
@@ -111,37 +114,40 @@ export function ProjectDetails({
 
         {/* \n vira quebra de linha (listas com "•"), \n\n separa parágrafos. */}
         <p className="text-step-0 whitespace-pre-line text-muted">{t(project.description)}</p>
-
-        {project.stack.length > 0 && (
-          <ul className="flex flex-wrap gap-1.5" aria-label={t(ui.projects.stack)}>
-            {project.stack.map((tech) => {
-              const icon = skillIcon(tech);
-              return (
-                <li key={tech}>
-                  <Badge className="gap-1.5">
-                    {icon && <BrandIcon name={icon} className="size-3.5 text-primary-ink" />}
-                    {tech}
-                  </Badge>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-
-        <p className="text-step--1 font-semibold text-primary-ink">{projectDate(project)}</p>
       </div>
 
-      {links.length > 0 && (
-        <ul className="flex flex-wrap gap-3 lg:col-span-2">
-          {links.map(({ key, href }) => (
-            <li key={key}>
-              <ButtonLink href={href} target="_blank" rel="noopener noreferrer">
-                {linkIcons[key]}
-                {t(ui.projectLinks[key])}
-              </ButtonLink>
-            </li>
-          ))}
-        </ul>
+      {/* Stack e links logo abaixo da mídia (desktop); no mobile, depois do texto. */}
+      {(project.stack.length > 0 || links.length > 0) && (
+        <div className="flex flex-col gap-5 lg:col-start-1 lg:row-start-2 lg:self-start">
+          {project.stack.length > 0 && (
+            <ul className="flex flex-wrap gap-1.5" aria-label={t(ui.projects.stack)}>
+              {project.stack.map((tech) => {
+                const icon = skillIcon(tech);
+                return (
+                  <li key={tech}>
+                    <Badge className="gap-1.5">
+                      {icon && <BrandIcon name={icon} className="size-3.5 text-primary-ink" />}
+                      {tech}
+                    </Badge>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+
+          {links.length > 0 && (
+            <ul className="flex flex-wrap gap-3">
+              {links.map(({ key, href }) => (
+                <li key={key}>
+                  <ButtonLink href={href} target="_blank" rel="noopener noreferrer">
+                    {linkIcons[key]}
+                    {t(ui.projectLinks[key])}
+                  </ButtonLink>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </article>
   );
