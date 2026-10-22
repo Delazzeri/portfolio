@@ -14,8 +14,10 @@ type ProjectCardProps = {
 };
 
 /**
- * Capa escurecida com título + stack por cima. No hover/foco: o card cresce, a camada
- * escura e a stack somem e aparece o "Ver mais". Em telas de toque (sem hover) a camada fica.
+ * Capa ocupando o card todo, escurecida, com título + stack por cima. No hover/foco: o card
+ * cresce, a camada escura e a stack somem e abre uma barra abaixo da capa com a data e o
+ * "Ver mais" (por cima do conteúdo de baixo, sem empurrar o layout).
+ * Em telas de toque (sem hover) a camada fica.
  */
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const { stack } = project;
@@ -25,9 +27,9 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
       href={`/projetos/${project.slug}`}
       scroll={false}
       data-project-link={project.slug}
-      className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-surface shadow-sm transition duration-300 ease-out hover:scale-[1.03] hover:border-primary hover:shadow-lg focus-visible:scale-[1.03] motion-reduce:transform-none"
+      className="group relative block rounded-lg transition-transform duration-300 ease-out hover:scale-[1.03] focus-visible:scale-[1.03] motion-reduce:transform-none"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden rounded-lg border border-border bg-surface shadow-sm transition-[border-color,border-radius,box-shadow] duration-300 group-hover:rounded-b-none group-hover:border-primary group-hover:shadow-lg group-focus-visible:rounded-b-none group-focus-visible:border-primary">
         <ProjectCover
           project={project}
           labelled={false}
@@ -68,11 +70,16 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         </div>
       </div>
 
-      <div className="mt-auto flex items-center justify-between gap-4 border-t border-border px-4 py-3 transition-colors group-hover:border-primary">
-        <span className="text-step--1 font-medium text-muted">{projectDate(project)}</span>
-        <span className="rounded-full bg-primary px-4 py-1.5 text-step--1 font-semibold text-primary-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-          {t(ui.projects.more)}
-        </span>
+      {/* Barra que abre abaixo da capa no hover/foco (0fr → 1fr anima a altura). */}
+      <div className="absolute inset-x-0 top-full grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-hover:grid-rows-[1fr] group-focus-visible:grid-rows-[1fr] motion-reduce:transition-none">
+        <div className="overflow-hidden">
+          <div className="flex items-center justify-between gap-4 rounded-b-lg border border-t-0 border-primary bg-surface px-4 py-3">
+            <span className="text-step--1 font-medium">{projectDate(project)}</span>
+            <span className="rounded-full bg-primary px-4 py-1.5 text-step--1 font-semibold text-primary-foreground">
+              {t(ui.projects.more)}
+            </span>
+          </div>
+        </div>
       </div>
     </Link>
   );

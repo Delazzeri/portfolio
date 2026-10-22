@@ -13,7 +13,8 @@ export function ProjectGrid({ projects, featured = false }: ProjectGridProps) {
   return (
     <ul className={cn('grid gap-6', featured ? 'md:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3')}>
       {projects.map((project, index) => (
-        <li key={project.slug}>
+        // Card em hover/foco fica acima dos vizinhos (a barra inferior abre por cima deles).
+        <li key={project.slug} className="relative focus-within:z-10 hover:z-10">
           <Reveal index={index} className="h-full">
             <ProjectCard project={project} featured={featured} />
           </Reveal>
