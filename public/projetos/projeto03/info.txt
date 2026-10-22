@@ -3,7 +3,7 @@
 # ano: 2026 ou com mês (Outubro de 2026, 10/2026) | tipo: pessoal, freelance, faculdade ou profissional | destaque: sim ou não (máx. 4 com "sim")
 # Opcionais: resumo (frase para o Google), papel (ex.: Front-end), figma (link).
 
-titulo: WORK OS
+titulo: Work OS
 ano: Agosto de 2026
 tipo: pessoal
 destaque: não
