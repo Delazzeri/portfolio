@@ -6,7 +6,7 @@
 
 <br/><br/>
 
-<a href="https://portfolio-gamma-one-2b3woqb8t3.vercel.app"><img src="https://raw.githubusercontent.com/Delazzeri/Delazzeri/main/assets/btn-demo.svg" height="36" alt="Ver site" /></a>
+<a href="https://eduardodelazeri.vercel.app/"><img src="https://raw.githubusercontent.com/Delazzeri/Delazzeri/main/assets/btn-demo.svg" height="36" alt="Ver site" /></a>
 
 </div>
 
