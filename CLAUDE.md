@@ -142,6 +142,7 @@ export type Project = {
   featured: boolean;    // true → aparece em "Destaques"
   type: 'pessoal' | 'freelance' | 'faculdade' | 'profissional';
   links: { live?: string; repo?: string; linkedinPost?: string; figma?: string };
+  repoPrivate: boolean; // "repositorio: PRIVADO" no info.txt
 };
 ```
 
@@ -149,7 +150,7 @@ export type Project = {
 - `video` é um link do YouTube, exibido como player incorporado (youtube-nocookie).
 - Destaques = `projects.filter(p => p.featured)`, máx. 4.
 - "Todos os projetos" lista todos, ordenados por `year` e `month` desc (sem mês → fim do ano), **sem filtro** (decisão do Eduardo).
-- Links ausentes não renderizam botão (nunca botão desabilitado ou `href="#"`).
+- Links ausentes não renderizam botão (nunca botão desabilitado ou `href="#"`). Exceção: `repositorio: PRIVADO` mostra o aviso estático "Repositório privado" (não é link nem `<button>`).
 
 ## 7. Design system
 

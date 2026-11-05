@@ -184,6 +184,7 @@ function loadProject(slug: string): Project {
     .map(({ file }) => publicUrl(slug, file));
 
   const summary = info.resumo ?? firstSentence(description);
+  const repoPrivate = normalize(info.repositorio ?? '') === 'privado';
 
   // PT apenas por enquanto; o EN entra na Fase 5 (ex.: descricao.en.txt).
   return {
@@ -205,10 +206,11 @@ function loadProject(slug: string): Project {
     type,
     links: {
       live: info.site,
-      repo: info.repositorio,
+      repo: repoPrivate ? undefined : info.repositorio,
       linkedinPost: info.linkedin,
       figma: info.figma,
     },
+    repoPrivate,
   };
 }
 

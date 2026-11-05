@@ -10,6 +10,6 @@ destaque: sim
 stack: TypeScript, React, Next.js, Tailwind CSS, Supabase, Claude, Gemini, Photoshop
 video:
 site: https://tecnomola.vercel.app/
-repositorio: https://github.com/Delazzeri/tecnomola
+repositorio: PRIVADO
 linkedin:
 figma:

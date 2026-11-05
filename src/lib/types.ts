@@ -37,6 +37,7 @@ export type Project = {
   featured: boolean; // true → aparece em "Destaques"
   type: 'pessoal' | 'freelance' | 'faculdade' | 'profissional';
   links: { live?: string; repo?: string; linkedinPost?: string; figma?: string };
+  repoPrivate: boolean; // true → mostra "Repositório privado" no lugar do link do repositório
 };
 
 export type SectionId = 'sobre' | 'habilidades' | 'projetos' | 'contatos';

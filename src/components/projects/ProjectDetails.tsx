@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Lock } from 'lucide-react';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 
@@ -45,9 +45,10 @@ export function ProjectDetails({
   priority,
 }: ProjectDetailsProps) {
   const videoUrl = project.video && youtubeEmbedUrl(project.video);
+  // Repositório privado ocupa o lugar do botão do repositório, sem href.
   const links = linkOrder.flatMap((key) => {
     const href = project.links[key];
-    return href ? [{ key, href }] : [];
+    return href || (key === 'repo' && project.repoPrivate) ? [{ key, href }] : [];
   });
 
   return (
@@ -139,10 +140,17 @@ export function ProjectDetails({
             <ul className="flex flex-wrap gap-3">
               {links.map(({ key, href }) => (
                 <li key={key}>
-                  <ButtonLink href={href} target="_blank" rel="noopener noreferrer">
-                    {linkIcons[key]}
-                    {t(ui.projectLinks[key])}
-                  </ButtonLink>
+                  {href ? (
+                    <ButtonLink href={href} target="_blank" rel="noopener noreferrer">
+                      {linkIcons[key]}
+                      {t(ui.projectLinks[key])}
+                    </ButtonLink>
+                  ) : (
+                    <span className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-surface px-5 text-step--1 font-semibold text-muted">
+                      <Lock aria-hidden className="size-4" />
+                      {t(ui.projectLinks.repoPrivate)}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

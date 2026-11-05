@@ -51,6 +51,7 @@ figma: https://www.figma.com/...
 - Obrigatórios: `titulo`, `ano` e `tipo` (`pessoal`, `freelance`, `faculdade` ou `profissional`; "trabalho" também é aceito como `profissional`).
 - `destaque`: `sim` ou `não` (no máximo 4 destaques aparecem). `video`: link do YouTube.
 - Opcionais extras: `resumo` (frase para o Google; sem ele, usa a 1ª frase da descrição), `papel` (ex.: Front-end) e `figma` (link do arquivo ou protótipo; vira o botão "Ver no Figma" — dá para usar sem site nem repositório).
+- `repositorio`: link do repositório ou `PRIVADO`, que mostra o aviso "Repositório privado" (com cadeado e sem link) no lugar do botão.
 - Comentários só em linha própria, começando com `#`.
 - Campos vazios ou ausentes não aparecem (sem `site`, não há botão "Acessar projeto").
 - Os ícones da stack vêm da lista de Habilidades (`src/content/skills.ts`); tecnologia sem ícone aparece como texto.

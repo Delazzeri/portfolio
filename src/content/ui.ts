@@ -47,6 +47,7 @@ export const ui = {
     repo: { pt: 'Acessar repositório', en: 'View repository' },
     linkedinPost: { pt: 'Ver post no LinkedIn', en: 'View LinkedIn post' },
     figma: { pt: 'Ver no Figma', en: 'View on Figma' },
+    repoPrivate: { pt: 'Repositório privado', en: 'Private repository' },
   },
   footer: {
     rights: { pt: 'Todos os direitos reservados.', en: 'All rights reserved.' },
