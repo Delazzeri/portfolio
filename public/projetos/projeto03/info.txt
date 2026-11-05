@@ -9,7 +9,7 @@ tipo: pessoal
 destaque: não
 stack: TypeScript, React, Next.js, Tailwind CSS, Supabase, Claude, Photoshop
 video:
-site: https://marketing-os-beta-pearl.vercel.app/
+site: https://marketing-workos.vercel.app
 repositorio: https://github.com/Delazzeri/marketing-os
 linkedin:
 figma:
