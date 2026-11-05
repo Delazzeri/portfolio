@@ -9,7 +9,7 @@ tipo: Profissional
 destaque: sim
 stack: TypeScript, React, Next.js, Tailwind CSS, Supabase, Claude, Gemini, Photoshop
 video:
-site:
+site: https://vispecapital.com/
 repositorio: https://github.com/Delazzeri/vispe
 linkedin:
 figma:
